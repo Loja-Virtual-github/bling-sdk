@@ -11,27 +11,27 @@ class PedidoRouteTest extends BaseTesting
     public function testCallFetchAllMustReturnString()
     {
         $endpoint = PedidoRoute::fetchAll();
-        self::assertEquals('/pedidos', $endpoint);
+        self::assertEquals('pedidos', $endpoint);
     }
 
     public function testCallFetchMustReturnString()
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = PedidoRoute::fetch($id);
-        self::assertEquals("/pedido/$id", $endpoint);
+        self::assertEquals("pedido/$id", $endpoint);
     }
 
     public function testCallInsertMustReturnString()
     {
         $endpoint = PedidoRoute::insert();
-        self::assertEquals('/pedido', $endpoint);
+        self::assertEquals('pedido', $endpoint);
     }
 
     public function testCallUpdateMustReturnString()
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = PedidoRoute::update($id);
-        self::assertEquals("/pedido/$id", $endpoint);
+        self::assertEquals("pedido/$id", $endpoint);
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()

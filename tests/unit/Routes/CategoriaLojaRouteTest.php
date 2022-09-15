@@ -19,7 +19,7 @@ class CategoriaLojaRouteTest extends BaseTesting
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = CategoriaLojaRoute::fetchAll($id);
-        self::assertEquals("/categoriasLoja/$id", $endpoint);
+        self::assertEquals("categoriasLoja/$id", $endpoint);
     }
 
     public function testCallFetchWithoutCategoryIdMustThrowsInvalidArgumentException()
@@ -34,7 +34,7 @@ class CategoriaLojaRouteTest extends BaseTesting
         $id = $this->faker->unique()->randomDigit();
         $idSecundario = $this->faker->unique()->randomDigit();
         $endpoint = CategoriaLojaRoute::fetch($id, $idSecundario);
-        self::assertEquals("/categoriasLoja/$id/$idSecundario", $endpoint);
+        self::assertEquals("categoriasLoja/$id/$idSecundario", $endpoint);
     }
 
     public function testCallInsertWithoutIdMustThrowsInvalidArgumentsException()
@@ -47,7 +47,7 @@ class CategoriaLojaRouteTest extends BaseTesting
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = CategoriaLojaRoute::insert($id);
-        self::assertEquals("/categoriasLoja/$id", $endpoint);
+        self::assertEquals("categoriasLoja/$id", $endpoint);
     }
 
     public function testCallUpdateWithoutCategoryIdMustThrowsInvalidArgumentException()
@@ -62,7 +62,7 @@ class CategoriaLojaRouteTest extends BaseTesting
         $id = $this->faker->unique()->randomDigit();
         $idSecundario = $this->faker->unique()->randomDigit();
         $endpoint = CategoriaLojaRoute::update($id, $idSecundario);
-        self::assertEquals("/categoriasLoja/$id/$idSecundario", $endpoint);
+        self::assertEquals("categoriasLoja/$id/$idSecundario", $endpoint);
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()

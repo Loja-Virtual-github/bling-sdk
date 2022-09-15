@@ -11,27 +11,27 @@ class ContatoRouteTest extends BaseTesting
     public function testCallFetchAllMustReturnString()
     {
         $endpoint = ContatoRoute::fetchAll();
-        self::assertEquals('/contatos', $endpoint);
+        self::assertEquals('contatos', $endpoint);
     }
 
     public function testCallFetchMustReturnString()
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = ContatoRoute::fetch($id);
-        self::assertEquals("/contato/$id", $endpoint);
+        self::assertEquals("contato/$id", $endpoint);
     }
 
     public function testCallInsertMustReturnString()
     {
         $endpoint = ContatoRoute::insert();
-        self::assertEquals('/contato', $endpoint);
+        self::assertEquals('contato', $endpoint);
     }
 
     public function testCallUpdateMustReturnString()
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = ContatoRoute::update($id);
-        self::assertEquals("/contato/$id", $endpoint);
+        self::assertEquals("contato/$id", $endpoint);
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()

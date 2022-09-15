@@ -11,7 +11,7 @@ class NotaFiscalRouteTest extends BaseTesting
     public function testCallFetchAllMustReturnString()
     {
         $endpoint = NotaFiscalRoute::fetchAll();
-        self::assertEquals('/notasfiscais', $endpoint);
+        self::assertEquals('notasfiscais', $endpoint);
     }
 
     public function testCallFetchMustReturnString()
@@ -19,19 +19,19 @@ class NotaFiscalRouteTest extends BaseTesting
         $numero = $this->faker->unique()->randomDigit();
         $serie = $this->faker->unique()->randomDigit();
         $endpoint = NotaFiscalRoute::fetch($numero, $serie);
-        self::assertEquals("/notafiscal/$numero/$serie", $endpoint);
+        self::assertEquals("notafiscal/$numero/$serie", $endpoint);
     }
 
     public function testCallFetchRelatorioMustReturnStringEndpoint()
     {
         $endpoint = NotaFiscalRoute::fetchRelatorios();
-        self::assertEquals('/relatorios/nfe.xml.php', $endpoint);
+        self::assertEquals('relatorios/nfe.xml.php', $endpoint);
     }
 
     public function testCallInsertMustReturnString()
     {
         $endpoint = NotaFiscalRoute::insert();
-        self::assertEquals('/notafiscal', $endpoint);
+        self::assertEquals('notafiscal', $endpoint);
     }
 
     public function testCallInsertNumeroSerieMustReturnStringEndpoint()
@@ -39,7 +39,7 @@ class NotaFiscalRouteTest extends BaseTesting
         $numero = $this->faker->unique()->randomDigit();
         $serie = $this->faker->unique()->randomDigit();
         $endpoint = NotaFiscalRoute::insertNumeroSerie($numero, $serie);
-        self::assertEquals("/notafiscal/$numero/$serie", $endpoint);
+        self::assertEquals("notafiscal/$numero/$serie", $endpoint);
     }
 
     public function testCallUpdateMustThrowsInvalidEndpointException()

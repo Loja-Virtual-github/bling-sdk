@@ -13,7 +13,7 @@ abstract class CategoriaLojaRoute implements RouteInterface
             throw new InvalidArgumentException("O campo ID da Loja é obrigatório.");
         }
 
-        return sprintf('/categoriasLoja/%s', $id);
+        return sprintf('categoriasLoja/%s', $id);
     }
 
     public static function fetch(int $id, ?int $idSecundario = null): string
@@ -22,7 +22,7 @@ abstract class CategoriaLojaRoute implements RouteInterface
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
-        return sprintf('/categoriasLoja/%s/%s', $id, $idSecundario);
+        return sprintf('categoriasLoja/%s/%s', $id, $idSecundario);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string
@@ -31,7 +31,7 @@ abstract class CategoriaLojaRoute implements RouteInterface
             throw new InvalidArgumentException("O campo ID da Loja é obrigatório.");
         }
 
-        return sprintf('/categoriasLoja/%s', $id);
+        return sprintf('categoriasLoja/%s', $id);
     }
 
     public static function update(int $id, ?int $idSecundario = null): string
@@ -40,7 +40,7 @@ abstract class CategoriaLojaRoute implements RouteInterface
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
-        return sprintf('/categoriasLoja/%s/%s', $id, $idSecundario);
+        return sprintf('categoriasLoja/%s/%s', $id, $idSecundario);
     }
 
     public static function delete(int $id, ?int $idSecundario = null): string

@@ -5,12 +5,7 @@
 >
     <testsuites>
         <testsuite name="Testes de Unidade">
-            <directory suffix="Test.php">./tests/Unit</directory>
-            <exclude>vendor</exclude>
-        </testsuite>
-
-        <testsuite name="Testes de Integração">
-            <directory suffix="Test.php">./tests/Integration</directory>
+            <directory suffix="Test.php">./tests/unit</directory>
             <exclude>vendor</exclude>
         </testsuite>
     </testsuites>

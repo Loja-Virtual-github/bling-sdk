@@ -14,12 +14,12 @@ abstract class ProdutoLojaRoute implements RouteInterface
             throw new InvalidArgumentException("O campo ID da Loja é obrigatório.");
         }
 
-        return sprintf('/produto/%s', $id);
+        return sprintf('produto/%s', $id);
     }
 
     public static function fetch(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/produto/%s', $id);
+        return sprintf('produto/%s', $id);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string
@@ -28,7 +28,7 @@ abstract class ProdutoLojaRoute implements RouteInterface
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
-        return sprintf('/produtoLoja/%s/%s', $id, $idSecundario);
+        return sprintf('produtoLoja/%s/%s', $id, $idSecundario);
     }
 
     public static function update(int $id, ?int $idSecundario = null): string
@@ -37,7 +37,7 @@ abstract class ProdutoLojaRoute implements RouteInterface
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
-        return sprintf('/produtoLoja/%s/%s', $id, $idSecundario);
+        return sprintf('produtoLoja/%s/%s', $id, $idSecundario);
     }
 
     public static function delete(int $id, ?int $idSecundario = null): string

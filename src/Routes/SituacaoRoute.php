@@ -14,7 +14,7 @@ abstract class SituacaoRoute implements RouteInterface
 
     public static function fetch(int $id, ?int $idSecundario = null): string
     {
-        return sprintf("/situacao/%s", $id);
+        return sprintf("situacao/%s", $id);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string

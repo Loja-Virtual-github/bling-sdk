@@ -14,7 +14,7 @@ class CampoCustomizadoRoute implements RouteInterface
 
     public static function fetch(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/camposcustomizados/%s', $id);
+        return sprintf('camposcustomizados/%s', $id);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string

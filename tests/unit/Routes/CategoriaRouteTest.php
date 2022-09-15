@@ -11,27 +11,27 @@ class CategoriaRouteTest extends BaseTesting
     public function testCallFetchAllMustReturnString()
     {
         $endpoint = CategoriaRoute::fetchAll();
-        self::assertEquals('/categorias', $endpoint);
+        self::assertEquals('categorias', $endpoint);
     }
 
     public function testCallFetchMustReturnString()
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = CategoriaRoute::fetch($id);
-        self::assertEquals("/categoria/$id", $endpoint);
+        self::assertEquals("categoria/$id", $endpoint);
     }
 
     public function testCallInsertMustReturnString()
     {
         $endpoint = CategoriaRoute::insert();
-        self::assertEquals('/categorias', $endpoint);
+        self::assertEquals('categorias', $endpoint);
     }
 
     public function testCallUpdateMustReturnString()
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = CategoriaRoute::update($id);
-        self::assertEquals("/categoria/$id", $endpoint);
+        self::assertEquals("categoria/$id", $endpoint);
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()

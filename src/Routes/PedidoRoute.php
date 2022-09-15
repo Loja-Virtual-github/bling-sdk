@@ -9,22 +9,22 @@ abstract class PedidoRoute implements RouteInterface
 
     public static function fetchAll(?int $id = null): string
     {
-        return '/pedidos';
+        return 'pedidos';
     }
 
     public static function fetch(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/pedido/%s', $id);
+        return sprintf('pedido/%s', $id);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string
     {
-        return '/pedido';
+        return 'pedido';
     }
 
     public static function update(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/pedido/%s', $id);
+        return sprintf('pedido/%s', $id);
     }
 
     public static function delete(int $id, ?int $idSecundario = null): string

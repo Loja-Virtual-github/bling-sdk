@@ -18,7 +18,7 @@ class SituacaoRouteTest extends BaseTesting
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = SituacaoRoute::fetch($id);
-        self::assertEquals("/situacao/$id", $endpoint);
+        self::assertEquals("situacao/$id", $endpoint);
     }
 
     public function testCallInsertMustThrowsInvalidEndpointException()

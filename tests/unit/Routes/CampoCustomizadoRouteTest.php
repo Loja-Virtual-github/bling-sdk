@@ -18,7 +18,7 @@ class CampoCustomizadoRouteTest extends BaseTesting
     {
         $id = $this->faker->unique()->randomDigit();
         $endpoint = CampoCustomizadoRoute::fetch($id);
-        self::assertEquals("/camposcustomizados/$id", $endpoint);
+        self::assertEquals("camposcustomizados/$id", $endpoint);
     }
 
     public function testInsertMustThrowsInvalidEndpointException()
