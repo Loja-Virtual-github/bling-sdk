@@ -4,7 +4,7 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-class CampoCustomizado implements RouteInterface
+abstract class SituacaoRoute implements RouteInterface
 {
 
     public static function fetchAll(?int $id = null): string
@@ -14,7 +14,7 @@ class CampoCustomizado implements RouteInterface
 
     public static function fetch(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/camposcustomizados/%s', $id);
+        return sprintf("/situacao/%s", $id);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string

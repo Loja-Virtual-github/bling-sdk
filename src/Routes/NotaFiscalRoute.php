@@ -4,7 +4,7 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class NotaFiscal implements RouteInterface
+abstract class NotaFiscalRoute implements RouteInterface
 {
     public static function fetchAll(?int $id = null): string
     {

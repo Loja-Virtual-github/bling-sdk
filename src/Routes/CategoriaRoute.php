@@ -4,7 +4,7 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class Categoria implements RouteInterface
+abstract class CategoriaRoute implements RouteInterface
 {
     public static function fetchAll(?int $id = null): string
     {

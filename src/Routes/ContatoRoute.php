@@ -2,30 +2,32 @@
 
 namespace LojaVirtual\Bling\Routes;
 
-abstract class FormaPagamento implements RouteInterface
+use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+
+abstract class ContatoRoute implements RouteInterface
 {
     public static function fetchAll(?int $id = null): string
     {
-        return '/formaspagamento';
+        return '/contatos';
     }
 
     public static function fetch(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/formapagamento/%s', $id);
+        return sprintf('/contato/%s', $id);
     }
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string
     {
-        return '/formapagamento';
+        return '/contato';
     }
 
     public static function update(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/formapagamento/%s', $id);
+        return sprintf('/contato/%s', $id);
     }
 
     public static function delete(int $id, ?int $idSecundario = null): string
     {
-        return sprintf('/formapagamento/%s', $id);
+        throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
 }

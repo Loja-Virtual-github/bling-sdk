@@ -2,7 +2,7 @@
 
 namespace LojaVirtual\Bling\Routes;
 
-class Produto extends AbstractRoute implements RouteInterface
+abstract class ProdutoRoute implements RouteInterface
 {
 
     public static function fetchAll(?int $id = null): string
