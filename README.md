@@ -7,11 +7,11 @@
     - [X] FETCH
     - [X] FETCH ALL
 
-- [ ] Implementar CRUD de categoria loja
-    - [ ] INSERT
-    - [ ] UPDATE
-    - [ ] FETCH
-    - [ ] FETCH ALL
+- [X] Implementar CRUD de categoria loja
+    - [X] INSERT
+    - [X] UPDATE
+    - [X] FETCH
+    - [X] FETCH ALL
 
 - [ ] Implementar CRUD de campo customizado
     - [ ] INSERT
