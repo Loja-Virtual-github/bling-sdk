@@ -24,7 +24,7 @@ class CategoriaRouteTest extends BaseTesting
     public function testCallInsertMustReturnString()
     {
         $endpoint = CategoriaRoute::insert();
-        self::assertEquals('categorias', $endpoint);
+        self::assertEquals('categoria', $endpoint);
     }
 
     public function testCallUpdateMustReturnString()

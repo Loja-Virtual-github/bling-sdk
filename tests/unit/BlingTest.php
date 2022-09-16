@@ -8,7 +8,7 @@ use LojaVirtual\Bling\Resources\CategoriaResource;
 
 class BlingTest extends BaseTesting
 {
-    private string $fakeToken = 'aasdadasdasd';
+    private string $fakeToken = '18cf793d1362cbe406b88e595e0067c676c12b4c720bccb69d7d25079b07c18bcf0d7260';
 
     public function testInstanceByStaticMethod(): void
     {
@@ -47,11 +47,7 @@ class BlingTest extends BaseTesting
     public function testCallDinamicResource(): void
     {
         $bling = Bling::client($this->fakeToken);
-        $param = array(
-            'descricao' => 'Categoria criadinha',
-            'idCategoriaPai' => 0
-        );
-        $response = $bling->categoria(1, 2, 3)->insert($param);
-        exit(var_dump($response->isFail()));
+        $categoriaResource = $bling->categoria();
+        self::assertInstanceOf(CategoriaResource::class, $categoriaResource);
     }
 }

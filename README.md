@@ -1,0 +1,62 @@
+## Bling SDK
+
+- [x] Implementar padrão da SDK
+- [X] Implementar CRUD de categoria
+    - [X] INSERT
+    - [X] UPDATE
+    - [X] FETCH
+    - [X] FETCH ALL
+
+- [ ] Implementar CRUD de categoria loja
+    - [ ] INSERT
+    - [ ] UPDATE
+    - [ ] FETCH
+    - [ ] FETCH ALL
+
+- [ ] Implementar CRUD de campo customizado
+    - [ ] INSERT
+    - [ ] UPDATE
+    - [ ] FETCH
+    - [ ] FETCH ALL
+
+- [ ] Implementar CRUD de contato
+    - [ ] INSERT
+    - [ ] UPDATE
+    - [ ] FETCH
+    - [ ] FETCH ALL
+
+- [ ] Implementar CRUD de forma de pagamento
+    -  [ ] INSERT
+    -  [ ] UPDATE
+    -  [ ] FETCH
+    -  [ ] FETCH ALL
+
+- [ ] Implementar CRUD de nota fiscal
+    -  [ ] INSERT
+    -  [ ] UPDATE
+    -  [ ] FETCH
+    -  [ ] FETCH ALL
+
+-  [ ] Implementar CRUD de pedido
+    -  [ ] INSERT
+    -  [ ] UPDATE
+    -  [ ] FETCH
+    -  [ ] FETCH ALL
+
+- [ ] Implementar CRUD de produto
+    - [ ] INSERT
+    - [ ] UPDATE
+    - [ ] FETCH
+    - [ ] FETCH ALL
+
+- [ ] Implementar CRUD de produto loja
+    - [ ] INSERT
+    - [ ] UPDATE
+    - [ ] FETCH
+    - [ ] FETCH ALL
+
+- [ ] Implementar CRUD de situacao
+    - [ ] INSERT
+    - [ ] UPDATE
+    - [ ] FETCH
+    - [ ] FETCH ALL

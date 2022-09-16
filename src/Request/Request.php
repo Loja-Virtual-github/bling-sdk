@@ -18,21 +18,14 @@ class Request
     public const PUT = 'PUT';
     public const DELETE = 'DELETE';
 
-    private static ?Request $instance = null;
-    private ClientInterface $httpClient;
-    private static array $payloadTypes = [
+    private static $payloadFormat = [
         'POST' => 'form_params',
         'PUT' => 'form_params',
-        'GET' => 'query',
-        'DELETE' => 'form_params'
+        'GET' => 'query'
     ];
 
-    private static array $payloadFormats = [
-        'POST' => 'xml',
-        'PUT' => 'xml',
-        'GET' => 'query',
-        'DELETE' => 'query'
-    ];
+    private static ?Request $instance = null;
+    private ClientInterface $httpClient;
 
     protected function __construct()
     {
@@ -68,13 +61,11 @@ class Request
      */
     public static function preparePayload(string $method, array $payload): array
     {
-        if (!array_key_exists('apikey', $payload)) {
-            $payload['apikey'] = Bling::$token;
-        }
-
-        return array(
-            self::$payloadTypes[$method] => $payload
-        );
+        $payload['apikey'] = Bling::$token;
+        $payloadFormat = self::$payloadFormat[$method];
+        return [
+            $payloadFormat => $payload
+        ];
     }
 
     /**
@@ -91,17 +82,16 @@ class Request
     public function sendRequest(
         string $method,
         string $endpoint,
-        array $options
+        array $options = []
     ): ResponseHandler {
         try {
             $response = $this
                 ->httpClient
                 ->request(
                     $method,
-                    sprintf("%s/json", $endpoint),
-                    Request::preparePayload($method, $options)
+                    sprintf("%s/json/", $endpoint),
+                    self::preparePayload($method, $options)
                 );
-
             return ResponseHandler::success($response);
         } catch (ClientException $e) {
             return ResponseHandler::failure($e);

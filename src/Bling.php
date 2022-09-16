@@ -74,6 +74,14 @@ final class Bling
         return self::FORMAT;
     }
 
+    /**
+     * Retorna a instância de um resource automaticamente
+     *
+     * @param string $resourceCalled
+     * @param array $arguments
+     * @return mixed
+     * @throws InvalidResourceException
+     */
     public function __call(string $resourceCalled, array $arguments)
     {
         if (!in_array($resourceCalled, $this->availableResources)) {

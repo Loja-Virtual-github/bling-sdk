@@ -3,6 +3,10 @@
 namespace LojaVirtual\Bling\Request;
 
 use GuzzleHttp\Psr7\Response;
+use LojaVirtual\Bling\Exceptions\BlingException;
+use LojaVirtual\Bling\Exceptions\InvalidJsonException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
+use LojaVirtual\Bling\Exceptions\InvalidXmlException;
 use LojaVirtual\Bling\Format\JSON;
 use LojaVirtual\Bling\Format\XML;
 
@@ -41,8 +45,8 @@ class ResponseHandler
      * Retorna o conteúdo da resposta
      *
      * @return object
-     * @throws \LojaVirtual\Bling\Exceptions\InvalidJsonException
-     * @throws \LojaVirtual\Bling\Exceptions\InvalidXmlException
+     * @throws InvalidJsonException
+     * @throws InvalidXmlException
      */
     public function getBody(): object
     {
@@ -53,8 +57,10 @@ class ResponseHandler
         $contentBody = $this->response->getBody()->getContents();
         if (str_contains($contentType, 'xml')) {
             $body = XML::from($contentBody);
-        } else {
+        } else if (str_contains($contentType, 'json')) {
             $body = JSON::from($contentBody);
+        } else {
+            throw new InvalidResponseFormatException($contentBody);
         }
 
         if (property_exists($body, 'retorno')) {
@@ -62,14 +68,43 @@ class ResponseHandler
         }
 
         if (property_exists($body, 'erros')) {
-            $body = $body->erros;
+            $errorMsg = (array) $body->erros;
+            if (property_exists($body->erros, 'erro')) {
+                $errorMsg = (array) $body->erros->erro;
+            }
+            throw new BlingException(implode("\r\n", $errorMsg));
         }
 
         return $body;
     }
 
+    /**
+     * Verifica se a request teve sucesso
+     *
+     * @return bool
+     */
+    public function isSuccess(): bool
+    {
+        return $this->getStatusCode() >= 200 && $this->getStatusCode() < 300;
+    }
+
+    /**
+     * Verifica se request falhou
+     *
+     * @return bool
+     */
     public function isFail(): bool
     {
-        return $this->response->getStatusCode() >= 300;
+        return $this->getStatusCode() >= 300;
+    }
+
+    /**
+     * Retorna o status code da request
+     *
+     * @return int
+     */
+    public function getStatusCode(): int
+    {
+        return $this->response->getStatusCode();
     }
 }

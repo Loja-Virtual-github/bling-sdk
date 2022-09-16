@@ -18,7 +18,7 @@ abstract class CategoriaRoute implements RouteInterface
 
     public static function insert(?int $id = null, ?int $idSecundario = null): string
     {
-        return 'categorias';
+        return 'categoria';
     }
 
     public static function update(int $id, ?int $idSecundario = null): string
