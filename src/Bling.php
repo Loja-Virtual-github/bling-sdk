@@ -10,6 +10,7 @@ final class Bling
     private const TIMEOUT = 1.0;
     private const FORMAT = 'json';
     public static string $token;
+    public static ?int $idLoja;
     private array $availableResources = [
         'campo_customizado',
         'categoria',
@@ -28,9 +29,10 @@ final class Bling
      *
      * @param string $token
      */
-    public function __construct(string $token)
+    public function __construct(string $token, ?int $idLoja = null)
     {
         self::$token = $token;
+        self::$idLoja = $idLoja;
     }
 
     /**
@@ -39,9 +41,9 @@ final class Bling
      * @param string $token
      * @return Bling
      */
-    public static function client(string $token): Bling
+    public static function client(string $token, ?int $idLoja = null): Bling
     {
-        return new Bling($token);
+        return new Bling($token, $idLoja);
     }
 
     /**

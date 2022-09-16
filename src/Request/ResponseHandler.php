@@ -69,8 +69,13 @@ class ResponseHandler
 
         if (property_exists($body, 'erros')) {
             $errorMsg = (array) $body->erros;
-            if (property_exists($body->erros, 'erro')) {
-                $errorMsg = (array) $body->erros->erro;
+
+            if (is_array($errorMsg)) {
+                $errorMsg = $errorMsg[0];
+            }
+
+            if (property_exists($errorMsg, 'erro')) {
+                $errorMsg = (array) $errorMsg->erro;
             }
             throw new BlingException(implode("\r\n", $errorMsg));
         }

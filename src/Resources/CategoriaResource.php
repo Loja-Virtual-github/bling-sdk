@@ -21,7 +21,7 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
      * @throws InvalidJsonException
      * @throws InvalidXmlException
      */
-    public function fetch()
+    public function fetch(): array
     {
         $response = $this->request
             ->sendRequest(
@@ -97,6 +97,16 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
         return $responseParsed->categorias[0][0]->categoria;
     }
 
+    /**
+     * Atualizar uma categoria
+     *
+     * @param array $params
+     * @return object
+     * @throws BlingException
+     * @throws GuzzleException
+     * @throws InvalidJsonException
+     * @throws InvalidXmlException
+     */
     public function update(array $params): object
     {
         $response = $this->request
@@ -112,7 +122,13 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
         return $responseParsed->categorias[0][0]->categoria;
     }
 
-    public function delete(): object
+    /**
+     * [INDISPONÍVEL] Deletar uma categoria
+     *
+     * @return void
+     * @throws InvalidEndpointException
+     */
+    public function delete(): void
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

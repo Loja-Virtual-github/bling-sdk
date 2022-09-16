@@ -64,7 +64,8 @@ class Request
         $payload['apikey'] = Bling::$token;
         $payloadFormat = self::$payloadFormat[$method];
         return [
-            $payloadFormat => $payload
+            $payloadFormat => $payload,
+            'debug' => false
         ];
     }
 
