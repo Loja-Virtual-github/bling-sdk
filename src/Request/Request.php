@@ -98,6 +98,7 @@ class Request
                     sprintf("%s/json/", $endpoint),
                     self::preparePayload($method, $options)
                 );
+            sleep(1);
             return ResponseHandler::success($response);
         } catch (ClientException $e) {
             return ResponseHandler::failure($e);
