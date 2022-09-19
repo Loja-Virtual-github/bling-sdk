@@ -87,6 +87,16 @@ class ContatoResource extends AbstractResource implements ResourceInterface
         return $responseParsed->contatos->contato;
     }
 
+    /**
+     * Atualiza um contato
+     *
+     * @param array $params
+     * @return object
+     * @throws BlingException
+     * @throws GuzzleException
+     * @throws InvalidJsonException
+     * @throws InvalidXmlException
+     */
     public function update(array $params): object
     {
         $response = $this->request
@@ -100,27 +110,6 @@ class ContatoResource extends AbstractResource implements ResourceInterface
 
         $responseParsed = $this->parseResponse($response);
         return $responseParsed->contatos->contato;
-    }
-
-    /**
-     * Substitui os campos alterados no objeto original
-     *
-     * @param object $origin
-     * @param array $update
-     * @return array
-     */
-    public function parseUpdateParams(object $origin, array $update): array
-    {
-        foreach ($update as $field => $value) {
-            if (is_array($value)) {
-                return $this->parseUpdateParams($origin->{$field}, $update[$field]);
-            }
-
-            $origin->{$field} = $value;
-        }
-
-        $origin = json_encode($origin);
-        return json_decode($origin, true);
     }
 
     /**
