@@ -62,6 +62,11 @@ class Request
     public static function preparePayload(string $method, array $payload): array
     {
         $payload['apikey'] = Bling::$token;
+
+        if (!empty(Bling::$idLoja)) {
+            $payload['loja'] = Bling::$idLoja;
+        }
+
         $payloadFormat = self::$payloadFormat[$method];
         return [
             $payloadFormat => $payload,
