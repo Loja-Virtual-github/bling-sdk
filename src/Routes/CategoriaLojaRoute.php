@@ -9,13 +9,12 @@ use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 abstract class CategoriaLojaRoute implements RouteInterface
 {
     /**
-     * Retorna endpoint para buscar vinculos de categoria
+     * Retorna endpoint para buscar vínculos de categoria
      *
-     * @param int|null $id
      * @return string
      * @throws InvalidArgumentException
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         if (is_null(Bling::$idLoja)) {
             throw new InvalidArgumentException("O campo ID da Loja é obrigatório.");
@@ -34,7 +33,7 @@ abstract class CategoriaLojaRoute implements RouteInterface
      */
     public static function fetch(int|string $id, ?int $idSecundario = null): string
     {
-        if (is_null($id)) {
+        if (is_null($id) || is_null(Bling::$idLoja)) {
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
@@ -42,14 +41,13 @@ abstract class CategoriaLojaRoute implements RouteInterface
     }
 
     /**
-     * Retorna endpoint para inserir um vinculo de categoria
+     * Retorna endpoint para inserir um vínculo de categoria
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed|null $id
      * @return string
      * @throws InvalidArgumentException
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         if (is_null(Bling::$idLoja)) {
             throw new InvalidArgumentException("O campo ID da Loja é obrigatório.");
@@ -62,13 +60,12 @@ abstract class CategoriaLojaRoute implements RouteInterface
      * Retorna endpoint para atualizar um vínculo de categoria
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidArgumentException
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
-        if (is_null($id)) {
+        if (is_null($id) || is_null(Bling::$idLoja)) {
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
@@ -79,11 +76,10 @@ abstract class CategoriaLojaRoute implements RouteInterface
      * [INDISPONÍVEL] - Retorna o endpoint para deletar um vínculo de categoria
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

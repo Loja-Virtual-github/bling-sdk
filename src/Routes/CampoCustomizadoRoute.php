@@ -10,11 +10,10 @@ class CampoCustomizadoRoute implements RouteInterface
     /**
      * [INDISPONÍVEL] - Retorna endpoint para buscar todos campos customizados do módulo
      *
-     * @param int|null $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
@@ -34,12 +33,11 @@ class CampoCustomizadoRoute implements RouteInterface
     /**
      * [INDISPONÍVEL] - Insere um novo campo customizado
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed|null $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
@@ -48,11 +46,10 @@ class CampoCustomizadoRoute implements RouteInterface
      * [INDISPONÍVEL] - Atualiza um campo customizado de um módulo
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
@@ -61,11 +58,10 @@ class CampoCustomizadoRoute implements RouteInterface
      * [INDISPONÍVEL] - Deleta um campo customizado de um módulo
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

@@ -9,10 +9,9 @@ abstract class ContatoRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar todos os contatos
      *
-     * @param int|null $id
      * @return string
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         return 'contatos';
     }
@@ -32,11 +31,10 @@ abstract class ContatoRoute implements RouteInterface
     /**
      * Retorna endpoint para inserir um novo contato
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed|null $id
      * @return string
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         return 'contato';
     }
@@ -45,10 +43,9 @@ abstract class ContatoRoute implements RouteInterface
      * Retorna endpoint para atualizar um contato
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
         return sprintf('contato/%s', $id);
     }
@@ -57,11 +54,10 @@ abstract class ContatoRoute implements RouteInterface
      * [INDISPONÍVEL] - Retorna o endpoint para deletar um contato
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

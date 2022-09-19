@@ -28,16 +28,19 @@ class CampoCustomizadoTest extends BaseTesting
     public function testUpdateCampoCustomizadoMustThrowsInvalidEndpointException(): void
     {
         self::expectException(InvalidEndpointException::class);
+        $this->bling->campo_customizado(123)->update([]);
     }
 
     public function testDeleteCampoCustomizadoMustThrowsInvalidEndpointException(): void
     {
         self::expectException(InvalidEndpointException::class);
+        $this->bling->campo_customizado(123)->delete();
     }
 
     public function testFetchAllCampoCustomizadoMustThrowsInvalidEndpointException(): void
     {
         self::expectException(InvalidEndpointException::class);
+        $this->bling->campo_customizado()->fetchAll();
     }
 
     public function testFetchCampoCustomizado(): void

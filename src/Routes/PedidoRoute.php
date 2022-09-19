@@ -10,10 +10,9 @@ abstract class PedidoRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar todos os pedidos
      *
-     * @param int|null $id
      * @return string
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         return 'pedidos';
     }
@@ -33,11 +32,10 @@ abstract class PedidoRoute implements RouteInterface
     /**
      * Retorna endpoint para inserir um novo pedido
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed|null $id
      * @return string
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         return 'pedido';
     }
@@ -46,10 +44,9 @@ abstract class PedidoRoute implements RouteInterface
      * Retorna um endpoint para atualizar um pedido
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
         return sprintf('pedido/%s', $id);
     }
@@ -58,11 +55,10 @@ abstract class PedidoRoute implements RouteInterface
      * [INDISPONÍVEL] - Retorna endpoint para excluir um pedido
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

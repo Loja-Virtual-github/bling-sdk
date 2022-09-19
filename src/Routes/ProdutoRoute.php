@@ -8,10 +8,9 @@ abstract class ProdutoRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar todos os produtos
      *
-     * @param int|null $id
      * @return string
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         return 'produtos';
     }
@@ -31,11 +30,10 @@ abstract class ProdutoRoute implements RouteInterface
     /**
      * Retorna endpoint para inserir um novo produto
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed $id
      * @return string
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         return 'produto';
     }
@@ -44,10 +42,9 @@ abstract class ProdutoRoute implements RouteInterface
      * Retorna endpoint para atualizar um produto
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
         return sprintf('produto/%s', $id);
     }
@@ -56,10 +53,9 @@ abstract class ProdutoRoute implements RouteInterface
      * Retorna um endpoint para deletar um produto
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         return sprintf('produto/%s', $id);
     }

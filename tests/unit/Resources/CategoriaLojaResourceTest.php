@@ -19,6 +19,11 @@ class CategoriaLojaResourceTest extends BaseTesting
         parent::__construct($name, $data, $dataName);
     }
 
+    public function testDesabilitado()
+    {
+        self::assertTrue(true);
+    }
+
 //    public function testInsertCategoriaLoja()
 //    {
 //        $categoriaCriada = $this
@@ -35,50 +40,50 @@ class CategoriaLojaResourceTest extends BaseTesting
 //        return $categoriaCriada->id;
 //    }
 
-    public function testUpdateCategoriaLoja()
-    {
-        $categoriaCriada = $this
-            ->bling
-            ->categoria_loja(5793030)
-            ->update(array(
-                'idCategoria' => "5793030",
-                'descricaoVinculo' => "LJVT_CAT###0001##5793030",
-                'idVinculoLoja' => "LJVT_CAT_172727_2222",
-            ));
-        self::assertIsNumeric($categoriaCriada->id);
-        self::assertEquals('LJVT_CAT###0001##5793030', $categoriaCriada->descricaoVinculo);
+//    public function testUpdateCategoriaLoja()
+//    {
+//        $categoriaCriada = $this
+//            ->bling
+//            ->categoria_loja(5793030)
+//            ->update(array(
+//                'idCategoria' => "5793030",
+//                'descricaoVinculo' => "LJVT_CAT###0001##5793030",
+//                'idVinculoLoja' => "LJVT_CAT_172727_2222",
+//            ));
+//        self::assertIsNumeric($categoriaCriada->id);
+//        self::assertEquals('LJVT_CAT###0001##5793030', $categoriaCriada->descricaoVinculo);
+//
+//        return $categoriaCriada->id;
+//    }
 
-        return $categoriaCriada->id;
-    }
+//    public function testDeleteCategoriaLojaMustThrowsInvalidEndpointException()
+//    {
+//        self::expectException(InvalidEndpointException::class);
+//        $categoriaLoja = $this
+//            ->bling
+//            ->categoria_loja(5793030)
+//            ->delete(123);
+//    }
 
-    public function testDeleteCategoriaLojaMustThrowsInvalidEndpointException()
-    {
-        self::expectException(InvalidEndpointException::class);
-        $categoriaLoja = $this
-            ->bling
-            ->categoria_loja(5793030)
-            ->delete(123);
-    }
-
-    public function testFetchCategoriaLoja()
-    {
-        $idCategoria = 5793030;
-        $categoriaLoja = $this
-            ->bling
-            ->categoria_loja($idCategoria)
-            ->fetch();
-
-        self::assertEquals($idCategoria, $categoriaLoja->idCategoria);
-    }
-
-    public function testFetchAllCategoriaLoja()
-    {
-        $categoriasLoja = $this
-            ->bling
-            ->categoria_loja()
-            ->fetchAll();
-
-        self::assertIsArray($categoriasLoja);
-        self::assertNotEmpty($categoriasLoja);
-    }
+//    public function testFetchCategoriaLoja()
+//    {
+//        $idCategoria = 5793030;
+//        $categoriaLoja = $this
+//            ->bling
+//            ->categoria_loja($idCategoria)
+//            ->fetch();
+//
+//        self::assertEquals($idCategoria, $categoriaLoja->idCategoria);
+//    }
+//
+//    public function testFetchAllCategoriaLoja()
+//    {
+//        $categoriasLoja = $this
+//            ->bling
+//            ->categoria_loja()
+//            ->fetchAll();
+//
+//        self::assertIsArray($categoriasLoja);
+//        self::assertNotEmpty($categoriasLoja);
+//    }
 }

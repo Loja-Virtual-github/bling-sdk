@@ -10,10 +10,9 @@ abstract class CategoriaRoute implements RouteInterface
     /**
      * Retorna o endpoint para buscar todas categorias
      *
-     * @param int|null $id
      * @return string
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         return 'categorias';
     }
@@ -33,11 +32,10 @@ abstract class CategoriaRoute implements RouteInterface
     /**
      * Retorna endpoint para inserir uma nova categoria
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed|null $id
      * @return string
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         return 'categoria';
     }
@@ -46,10 +44,9 @@ abstract class CategoriaRoute implements RouteInterface
      * Retorna endpoint para atualizar uma categoria
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
         return sprintf('categoria/%s', $id);
     }
@@ -58,11 +55,10 @@ abstract class CategoriaRoute implements RouteInterface
      * [INDISPONÍVEL] - Retorna endpoint para deletar uma categoria
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

@@ -9,10 +9,9 @@ abstract class NotaFiscalRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar todas as notas fiscais
      *
-     * @param int|null $id
      * @return string
      */
-    public static function fetchAll(?int $id = null): string
+    public static function fetchAll(): string
     {
         return 'notasfiscais';
     }
@@ -42,11 +41,10 @@ abstract class NotaFiscalRoute implements RouteInterface
     /**
      * Retorna endpoint para inserir uma nova nota fiscal
      *
-     * @param int|null $id
-     * @param int|null $idSecundario
+     * @param mixed|null $id
      * @return string
      */
-    public static function insert(?int $id = null, ?int $idSecundario = null): string
+    public static function insert(mixed $id = null): string
     {
         return 'notafiscal';
     }
@@ -67,11 +65,10 @@ abstract class NotaFiscalRoute implements RouteInterface
      * Retorna endpoint para atualizar uma nota fiscal
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function update(int $id, ?int $idSecundario = null): string
+    public static function update(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
@@ -80,11 +77,10 @@ abstract class NotaFiscalRoute implements RouteInterface
      * [INDISPONÍVEL] - Retorna endpoint para deletar uma nota fiscal
      *
      * @param int $id
-     * @param int|null $idSecundario
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id, ?int $idSecundario = null): string
+    public static function delete(int $id): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

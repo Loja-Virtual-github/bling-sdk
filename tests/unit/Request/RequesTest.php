@@ -35,7 +35,8 @@ class RequesTest extends BaseTesting
             'form_params' => array(
                 'xml' => '<teste/>',
                 'apikey' => 'teste'
-            )
+            ),
+            'debug' => false
         );
 
         self::assertEquals($payloadExpected, $payloadPrepared);
