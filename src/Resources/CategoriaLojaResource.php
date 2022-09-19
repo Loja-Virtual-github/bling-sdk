@@ -55,25 +55,7 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
             );
 
         $responseParsed = $this->parseResponse($response);
-        return $this->unwrapCategoriasLojaFetchAll($responseParsed->categoriasLoja);
-    }
-
-    /**
-     * Simplifica a lista retornada pela API
-     *
-     * @param array $categoriasLoja
-     * @return array
-     */
-    private function unwrapCategoriasLojaFetchAll(array $categoriasLoja): array
-    {
-        $unwrapped = [];
-        foreach ($categoriasLoja as $categoriaLoja) {
-            if (property_exists($categoriaLoja, 'categoriaLoja')) {
-                $unwrapped[] = $categoriaLoja->categoriaLoja;
-            }
-        }
-
-        return $unwrapped;
+        return $this->unwrapFetchAll($responseParsed->categoriasLoja, 'categoriaLoja');
     }
 
     /**

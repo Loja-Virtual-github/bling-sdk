@@ -13,17 +13,17 @@
     - [X] FETCH
     - [X] FETCH ALL
 
-- [ ] Implementar CRUD de campo customizado
-    - [ ] INSERT
-    - [ ] UPDATE
-    - [ ] FETCH
-    - [ ] FETCH ALL
+- [X] Implementar CRUD de campo customizado
+    - [X] INSERT
+    - [X] UPDATE
+    - [X] FETCH
+    - [X] FETCH ALL
 
-- [ ] Implementar CRUD de contato
-    - [ ] INSERT
-    - [ ] UPDATE
-    - [ ] FETCH
-    - [ ] FETCH ALL
+- [X] Implementar CRUD de contato
+    - [X] INSERT
+    - [X] UPDATE
+    - [X] FETCH
+    - [X] FETCH ALL
 
 - [ ] Implementar CRUD de forma de pagamento
     -  [ ] INSERT

@@ -51,25 +51,7 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
             );
 
         $responseParsed = $this->parseResponse($response);
-        return $this->unwrapCategoriasFetchAll($responseParsed->categorias);
-    }
-
-    /**
-     * Simplifica a lista retornada pela API
-     *
-     * @param array $categorias
-     * @return array
-     */
-    private function unwrapCategoriasFetchAll(array $categorias): array
-    {
-        $unwrapped = [];
-        foreach ($categorias as $categoria) {
-            if (property_exists($categoria, 'categoria')) {
-                $unwrapped[] = $categoria->categoria;
-            }
-        }
-
-        return $unwrapped;
+        return $this->unwrapFetchAll($responseParsed->categorias, 'categoria');
     }
 
     /**

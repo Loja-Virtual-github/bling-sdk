@@ -72,4 +72,23 @@ abstract class AbstractResource
 
         return $body;
     }
+
+    /**
+     * Simplifica a lista retornada pela API
+     *
+     * @param array $result
+     * @param string $rootKey
+     * @return array
+     */
+    protected function unwrapFetchAll(array $result, string $rootKey): array
+    {
+        $unwrapped = [];
+        foreach ($result as $obj) {
+            if (property_exists($obj, $rootKey)) {
+                $unwrapped[] = $obj->{$rootKey};
+            }
+        }
+
+        return $unwrapped;
+    }
 }
