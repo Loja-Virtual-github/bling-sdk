@@ -27,15 +27,9 @@ class Request
     private static ?Request $instance = null;
     private ClientInterface $httpClient;
 
-    protected function __construct()
+    public function __construct(ClientInterface $httpClient)
     {
-        $this->httpClient = new Client([
-            'base_uri' => Bling::getBaseURI(),
-            'timeout' => Bling::getTimeout(),
-            'headers' => [
-                'User-Agent' => 'Integração LojaVirtual.com.br | Contato: Pablo Sanches <sanches.webmaster@gmail.com>'
-            ]
-        ]);
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -46,7 +40,7 @@ class Request
     public static function getInstance(): Request
     {
         if (is_null(self::$instance)) {
-            self::$instance = new Request();
+            self::$instance = RequestFactory::factory();
         }
 
         return self::$instance;
