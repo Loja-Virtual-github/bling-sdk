@@ -2,34 +2,26 @@
 
 namespace LojaVirtual\Bling\Request;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Bling;
 use LojaVirtual\Bling\Exceptions\InvalidJsonException;
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use Exception;
 
 class Request
 {
-    public const GET = 'GET';
-    public const POST = 'POST';
-    public const PUT = 'PUT';
-    public const DELETE = 'DELETE';
-
-    private static $payloadFormat = [
+    private static ?Request $instance = null;
+    private ClientInterface $http_client;
+    private static $payload_format = [
         'POST' => 'form_params',
         'PUT' => 'form_params',
         'GET' => 'query'
     ];
 
-    private static ?Request $instance = null;
-    private ClientInterface $httpClient;
-
     public function __construct(ClientInterface $httpClient)
     {
-        $this->httpClient = $httpClient;
+        $this->http_client = $httpClient;
     }
 
     /**
@@ -53,7 +45,7 @@ class Request
      * @param array $payload
      * @return array
      */
-    public static function preparePayload(string $method, array $payload): array
+    private function preparePayload(string $method, array $payload): array
     {
         $payload['apikey'] = Bling::$token;
 
@@ -61,7 +53,7 @@ class Request
             $payload['loja'] = Bling::$idLoja;
         }
 
-        $payloadFormat = self::$payloadFormat[$method];
+        $payloadFormat = self::$payload_format[$method];
         return [
             $payloadFormat => $payload,
             'debug' => false
@@ -75,8 +67,6 @@ class Request
      * @param string $endpoint
      * @param array $options
      * @return ResponseHandler
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
      * @throws GuzzleException
      */
     public function sendRequest(
@@ -86,11 +76,11 @@ class Request
     ): ResponseHandler {
         try {
             $response = $this
-                ->httpClient
+                ->http_client
                 ->request(
                     $method,
                     sprintf("%s/json/", $endpoint),
-                    self::preparePayload($method, $options)
+                    $this->preparePayload($method, $options)
                 );
             sleep(1);
             return ResponseHandler::success($response);

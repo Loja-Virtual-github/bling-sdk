@@ -7,7 +7,7 @@ use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidJsonException;
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\Request;
+use LojaVirtual\Bling\Request\HttpMethodsEnum;
 use LojaVirtual\Bling\Routes\ContatoRoute;
 
 class ContatoResource extends AbstractResource implements ResourceInterface
@@ -20,20 +20,29 @@ class ContatoResource extends AbstractResource implements ResourceInterface
         'id' => '2'
     ];
 
+    /**
+     * Busca um contato específico
+     *
+     * @return object
+     * @throws BlingException
+     * @throws GuzzleException
+     * @throws InvalidJsonException
+     * @throws InvalidXmlException
+     */
     public function fetch(): object
     {
         $options = $this->getOptions();
 
         $response = $this->request
             ->sendRequest(
-                Request::GET,
+                HttpMethodsEnum::GET->value,
                 ContatoRoute::fetch(...$this->getOptions()),
                 array(
                     'identificador' => $this->getTipoIdentificador($options[0])
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'contatos');
         return $responseParsed->contatos[0]->contato;
     }
 
@@ -50,15 +59,24 @@ class ContatoResource extends AbstractResource implements ResourceInterface
             : self::TIPO_IDENTIFICADO['cpf_cnpj'];
     }
 
+    /**
+     * Retorna todos os contatos
+     *
+     * @return array
+     * @throws BlingException
+     * @throws GuzzleException
+     * @throws InvalidJsonException
+     * @throws InvalidXmlException
+     */
     public function fetchAll(): array
     {
         $response = $this->request
             ->sendRequest(
-                Request::GET,
+                HttpMethodsEnum::GET->value,
                 ContatoRoute::fetchAll()
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'contatos');
         return $this->unwrapFetchAll($responseParsed->contatos, 'contato');
     }
 
@@ -76,14 +94,14 @@ class ContatoResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::POST,
+                HttpMethodsEnum::POST->value,
                 ContatoRoute::insert(),
                 array(
                     'xml' => $this->payloadToXML($params, 'contato')
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'contatos');
         return $responseParsed->contatos->contato;
     }
 
@@ -101,14 +119,14 @@ class ContatoResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::PUT,
+                HttpMethodsEnum::PUT->value,
                 ContatoRoute::update(...$this->getOptions()),
                 array(
                     'xml' => $this->payloadToXML($params, 'contato')
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'contatos');
         return $responseParsed->contatos->contato;
     }
 

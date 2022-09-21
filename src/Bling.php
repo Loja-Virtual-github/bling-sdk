@@ -7,11 +7,12 @@ use LojaVirtual\Bling\Exceptions\InvalidResourceException;
 final class Bling
 {
     private const BASE_URI = 'https://bling.com.br/Api/v2/';
-    private const TIMEOUT = 1.0;
+    private const TIMEOUT = 30;
     private const FORMAT = 'json';
+
     public static string $token;
     public static ?int $idLoja;
-    private array $availableResources = [
+    private array $available_resources = [
         'campo_customizado',
         'categoria',
         'categoria_loja',
@@ -28,6 +29,7 @@ final class Bling
      * Construtor do cliente Bling
      *
      * @param string $token
+     * @param int|null $idLoja
      */
     public function __construct(string $token, ?int $idLoja = null)
     {
@@ -39,6 +41,7 @@ final class Bling
      * Retorna uma instância do client Bling
      *
      * @param string $token
+     * @param ?int $idLoja
      * @return Bling
      */
     public static function client(string $token, ?int $idLoja = null): Bling
@@ -86,7 +89,7 @@ final class Bling
      */
     public function __call(string $resourceCalled, array $arguments)
     {
-        if (!in_array($resourceCalled, $this->availableResources)) {
+        if (!in_array($resourceCalled, $this->available_resources)) {
             throw new InvalidResourceException("A funcionalidade $resourceCalled não está disponível.");
         }
 

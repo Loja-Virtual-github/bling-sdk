@@ -10,9 +10,10 @@ class JSON implements FormatInterface
      * Converte um array em JSON
      *
      * @param array $data
+     * @param string|null $root
      * @return string
      */
-    public static function to(array $data, ?string $root = null): string
+    public function to(array $data, ?string $root = null): string
     {
         return json_encode($data);
     }
@@ -20,13 +21,13 @@ class JSON implements FormatInterface
     /**
      * Converte uma string json em objeto
      *
-     * @param string $json
+     * @param string $data
      * @return object
      * @throws InvalidJsonException
      */
-    public static function from(string $json): object
+    public function from(string $data, $inArray = false): object
     {
-        $data = json_decode($json);
+        $data = json_decode($data, $inArray);
 
         if (!empty(json_last_error())) {
             throw new InvalidJsonException(json_last_error_msg());

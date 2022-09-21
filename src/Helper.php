@@ -45,4 +45,32 @@ abstract class Helper
 
         return $resourceNamespace;
     }
+
+    /**
+     * Retorna o namespace do handler de resposta de um resource
+     *
+     * @param string $resourceName
+     * @return string
+     * @throws InvalidResourceException
+     */
+    public static function buildResponseResourceClassName(string $resourceName): string
+    {
+        $resourceNameParts = explode('\\', $resourceName);
+        $resourceName = end($resourceNameParts);
+        $resourceName = strtr($resourceName, array(
+            'Resource' => 'Response'
+        ));
+
+        $responseResourceName = sprintf(
+            "%s\\Resources\\Response\\%s",
+            __NAMESPACE__,
+            $resourceName
+        );
+
+        if (!class_exists($responseResourceName)) {
+            throw new InvalidResourceException("Handler de resposta do resource $resourceName não foi implementado.");
+        }
+
+        return $responseResourceName;
+    }
 }

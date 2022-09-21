@@ -4,11 +4,10 @@ namespace LojaVirtual\Bling\Request;
 
 use GuzzleHttp\Psr7\Response;
 use LojaVirtual\Bling\Exceptions\BlingException;
+use LojaVirtual\Bling\Exceptions\BlingResourceException;
 use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Format\JSON;
-use LojaVirtual\Bling\Format\XML;
+use LojaVirtual\Bling\Format\FormatFactory;
 
 class ResponseHandler
 {
@@ -44,43 +43,35 @@ class ResponseHandler
     /**
      * Retorna o conteúdo da resposta
      *
-     * @return object
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @return mixed
      */
-    public function getBody(): object
+    public function getBody(): mixed
     {
-        $contentType = $this->response->getHeader('content-type');
-        $contentType = current($contentType);
-        $contentType = mb_strtolower($contentType);
+        $contentBody = $this
+            ->response
+            ->getBody()
+            ->getContents();
 
-        $contentBody = $this->response->getBody()->getContents();
-        if (str_contains($contentType, 'xml')) {
-            $body = XML::from($contentBody);
-        } else if (str_contains($contentType, 'json')) {
-            $body = JSON::from($contentBody);
-        } else {
-            throw new InvalidResponseFormatException($contentBody);
-        }
-
-        if (property_exists($body, 'retorno')) {
-            $body = $body->retorno;
-        }
-
-        if (property_exists($body, 'erros')) {
-            $errorMsg = (array) $body->erros;
-
-            if (is_array($errorMsg)) {
-                $errorMsg = $errorMsg[0];
-            }
-
-            if (property_exists($errorMsg, 'erro')) {
-                $errorMsg = (array) $errorMsg->erro;
-            }
-            throw new BlingException(implode("\r\n", $errorMsg));
-        }
-
+        $formater = FormatFactory::factory($this->getContentType());
+        $body = $formater->from($contentBody);
         return $body;
+    }
+
+    /**
+     * Retorna o content-type da resposta
+     *
+     * @return string
+     */
+    public function getContentType(): string
+    {
+        $contentType = $this
+            ->response
+            ->getHeader('content-type');
+
+        $contentType = current($contentType);
+        $contentType = mb_strtoupper($contentType);
+        $contentTypeParts = explode('/', $contentType);
+        return end($contentTypeParts);
     }
 
     /**
@@ -90,7 +81,7 @@ class ResponseHandler
      */
     public function isSuccess(): bool
     {
-        return $this->getStatusCode() >= 200 && $this->getStatusCode() < 300;
+        return ($this->getStatusCode() >= 200 && $this->getStatusCode() < 300);
     }
 
     /**
@@ -100,7 +91,7 @@ class ResponseHandler
      */
     public function isFail(): bool
     {
-        return $this->getStatusCode() >= 300;
+        return ($this->getStatusCode() >= 300);
     }
 
     /**

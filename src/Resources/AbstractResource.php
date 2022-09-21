@@ -4,21 +4,28 @@ namespace LojaVirtual\Bling\Resources;
 
 
 use LojaVirtual\Bling\Exceptions\BlingException;
-use LojaVirtual\Bling\Format\JSON;
-use LojaVirtual\Bling\Format\XML;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Format\FormatFactory;
 use LojaVirtual\Bling\Request\Request;
 use LojaVirtual\Bling\Request\ResponseHandler;
+use LojaVirtual\Bling\Resources\Response\ResourceResponseFactory;
+use LojaVirtual\Bling\Resources\Response\ResourceResponseInterface;
 
 abstract class AbstractResource
 {
     protected Request $request;
-
+    protected ResourceResponseInterface $resourceResponseHandler;
     private array $options = [];
 
+    /**
+     * @param array|null $options
+     * @throws InvalidResourceException
+     */
     public function __construct(?array $options = [])
     {
         $this->options = $options;
         $this->request = Request::getInstance();
+        $this->resourceResponseHandler = ResourceResponseFactory::factory(get_class($this));
     }
 
     /**
@@ -40,7 +47,8 @@ abstract class AbstractResource
      */
     protected function payloadToXML(array $payload, string $rootNode): string
     {
-        return rawurlencode(XML::to($payload, $rootNode));
+        $formater = FormatFactory::factory('xml');
+        return rawurlencode($formater->to($payload, $rootNode));
     }
 
     /**
@@ -51,7 +59,8 @@ abstract class AbstractResource
      */
     protected function payloadToJSON(array $payload): string
     {
-        return JSON::to($payload);
+        $formater = FormatFactory::factory('json');
+        return $formater->to($payload);
     }
 
     /**
@@ -63,9 +72,9 @@ abstract class AbstractResource
      * @throws \LojaVirtual\Bling\Exceptions\InvalidJsonException
      * @throws \LojaVirtual\Bling\Exceptions\InvalidXmlException
      */
-    protected function parseResponse(ResponseHandler $responseHandler): object
+    protected function parseResponse(ResponseHandler $responseHandler, string $responseKey): object
     {
-        $body = $responseHandler->getBody();
+        $body = $responseHandler->getBody($responseKey);
         if ($responseHandler->isFail()) {
             throw new BlingException("#{$body->erro->cod} | {$body->erro->msg}");
         }

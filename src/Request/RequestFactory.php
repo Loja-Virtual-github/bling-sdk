@@ -15,7 +15,10 @@ class RequestFactory
                 'base_uri' => Bling::getBaseURI(),
                 'timeout' => Bling::getTimeout(),
                 'headers' => [
-                    'User-Agent' => 'Integração LojaVirtual.com.br | Contato: Pablo Sanches <sanches.webmaster@gmail.com>'
+                    'Accept' => 'application/json',
+                    'Accept-Encoding' => 'gzip',
+                    'User-Agent' => 'Integração LojaVirtual.com.br | Contato: Pablo Sanches <sanches.webmaster@gmail.com>',
+                    'RequestId' => uniqid()
                 ]
             ]);
         }

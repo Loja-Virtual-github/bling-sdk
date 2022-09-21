@@ -4,6 +4,6 @@ namespace LojaVirtual\Bling\Format;
 
 interface FormatInterface
 {
-    public static function to(array $data, ?string $root = null): string;
-    public static function from(string $json): object;
+    public function to(array $data, ?string $root = null): string;
+    public function from(string $data): object;
 }

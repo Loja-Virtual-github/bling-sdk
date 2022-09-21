@@ -8,9 +8,8 @@ use LojaVirtual\Bling\Exceptions\InvalidArgumentException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidJsonException;
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\Request;
+use LojaVirtual\Bling\Request\HttpMethodsEnum;
 use LojaVirtual\Bling\Routes\CategoriaLojaRoute;
-use LojaVirtual\Bling\Routes\CategoriaRoute;
 
 class CategoriaLojaResource extends AbstractResource implements ResourceInterface
 {
@@ -28,11 +27,11 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
     {
         $response = $this->request
             ->sendRequest(
-                Request::GET,
+                HttpMethodsEnum::GET->value,
                 CategoriaLojaRoute::fetch(...$this->getOptions())
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
         return $responseParsed->categoriasLoja[0]->categoriaLoja;
     }
 
@@ -50,11 +49,11 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
     {
         $response = $this->request
             ->sendRequest(
-                Request::GET,
-                CategoriaLojaRoute::fetchAll(...$this->getOptions())
+                HttpMethodsEnum::GET->value,
+                CategoriaLojaRoute::fetchAll()
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
         return $this->unwrapFetchAll($responseParsed->categoriasLoja, 'categoriaLoja');
     }
 
@@ -73,14 +72,14 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
     {
         $response = $this->request
             ->sendRequest(
-                Request::POST,
+                HttpMethodsEnum::POST->value,
                 CategoriaLojaRoute::insert(...$this->getOptions()),
                 array(
                     'xml' => $this->payloadToXML(['categorialoja' => $params], 'categoriasloja')
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
         return $responseParsed->categoriasLoja[0][0]->categoriaLoja;
     }
 
@@ -99,14 +98,14 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
     {
         $response = $this->request
             ->sendRequest(
-                Request::PUT,
+                HttpMethodsEnum::PUT->value,
                 CategoriaLojaRoute::update(...$this->getOptions()),
                 array(
                     'xml' => $this->payloadToXML(['categorialoja' => $params], 'categoriasloja')
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
         return $responseParsed->categoriasLoja[0][0]->categoriaLoja;
     }
 

@@ -61,4 +61,5 @@
 - [X] Tratar para que as requests tenham um sleep de 1 segundos depois da execução
 - [X] Fazer a instância do Guzzle ser passada por injeção de dependência para refatorarmos os testes
 - [ ] Fazer os testes com stubs que verificam as chamadas de métodos
+- [ ] Mover os testes de resources para um suite de teste de integração
 - 

@@ -7,7 +7,7 @@ use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidJsonException;
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\Request;
+use LojaVirtual\Bling\Request\HttpMethodsEnum;
 use LojaVirtual\Bling\Routes\SituacaoRoute;
 
 class SituacaoResource extends AbstractResource implements ResourceInterface
@@ -16,8 +16,7 @@ class SituacaoResource extends AbstractResource implements ResourceInterface
     /**
      * Busca todas situacoes de venda
      *
-     * @return void
-     * @throws InvalidEndpointException
+     * @return array
      * @throws GuzzleException
      * @throws BlingException
      * @throws InvalidJsonException
@@ -27,11 +26,11 @@ class SituacaoResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::GET,
+                HttpMethodsEnum::GET->value,
                 SituacaoRoute::fetch('Vendas')
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'situacao');
         return $this->unwrapFetchAll($responseParsed->situacoes, 'situacao');
     }
 

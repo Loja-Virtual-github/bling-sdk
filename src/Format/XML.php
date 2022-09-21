@@ -3,11 +3,12 @@
 namespace LojaVirtual\Bling\Format;
 
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use SimpleXMLElement;
 use Spatie\ArrayToXml\ArrayToXml;
+use Exception;
 
 class XML implements FormatInterface
 {
+
     /**
      * Converte um array em uma string xml
      *
@@ -15,7 +16,7 @@ class XML implements FormatInterface
      * @param string|null $root
      * @return string
      */
-    public static function to(array $data, ?string $root = null): string
+    public function to(array $data, ?string $root = null): string
     {
         return ArrayToXml::convert($data, $root);
     }
@@ -23,17 +24,17 @@ class XML implements FormatInterface
     /**
      * Converte uma string XML em objeto
      *
-     * @param string $xml
+     * @param string $data
      * @return object
      * @throws InvalidXmlException
      */
-    public static function from(string $xml): object
+    public function from(string $data): object
     {
         try {
-            $xml = simplexml_load_string($xml);
+            $xml = simplexml_load_string($data);
             $json = json_encode($xml);
             $data = json_decode($json);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new InvalidXmlException($e->getMessage());
         }
 

@@ -7,7 +7,7 @@ use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidJsonException;
 use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\Request;
+use LojaVirtual\Bling\Request\HttpMethodsEnum;
 use LojaVirtual\Bling\Routes\CategoriaRoute;
 
 class CategoriaResource extends AbstractResource implements ResourceInterface
@@ -25,11 +25,11 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::GET,
+                HttpMethodsEnum::GET->value,
                 CategoriaRoute::fetch(...$this->getOptions())
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categorias');
         return $responseParsed->categorias[0]->categoria;
     }
 
@@ -46,11 +46,11 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::GET,
+                HttpMethodsEnum::GET->value,
                 CategoriaRoute::fetchAll()
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categorias');
         return $this->unwrapFetchAll($responseParsed->categorias, 'categoria');
     }
 
@@ -68,14 +68,14 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::POST,
+                HttpMethodsEnum::POST->value,
                 CategoriaRoute::insert(),
                 array(
                     'xml' => $this->payloadToXML(['categoria' => $params], 'categorias')
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categorias');
         return $responseParsed->categorias[0][0]->categoria;
     }
 
@@ -93,14 +93,14 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
     {
         $response = $this->request
             ->sendRequest(
-                Request::PUT,
+                HttpMethodsEnum::PUT->value,
                 CategoriaRoute::update(...$this->getOptions()),
                 array(
                     'xml' => $this->payloadToXML(['categoria' => $params], 'categorias')
                 )
             );
 
-        $responseParsed = $this->parseResponse($response);
+        $responseParsed = $this->parseResponse($response, 'categorias');
         return $responseParsed->categorias[0][0]->categoria;
     }
 
