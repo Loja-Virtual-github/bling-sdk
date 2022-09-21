@@ -19,71 +19,72 @@ class CategoriaLojaResourceTest extends BaseTesting
         parent::__construct($name, $data, $dataName);
     }
 
-    public function testDesabilitado()
+    public function testInsertCategoriaLoja(): mixed
     {
-        self::assertTrue(true);
+        $categoriaCriada = $this
+            ->bling
+            ->categoria_loja(204159108)
+            ->insert(array(
+                'idCategoria' => "5827317",
+                'descricaoVinculo' => "LJVT_CAT###0001##5827317",
+                'idVinculoLoja' => "LJVT_CAT_172727_2222",
+            ));
+        self::assertIsNumeric($categoriaCriada->id);
+        self::assertEquals('LJVT_CAT###0001##5827317', $categoriaCriada->descricaoVinculo);
+
+        return $categoriaCriada->id;
     }
 
-//    public function testInsertCategoriaLoja()
-//    {
-//        $categoriaCriada = $this
-//            ->bling
-//            ->categoria_loja(204159108)
-//            ->insert(array(
-//                'idCategoria' => "5793030",
-//                'descricaoVinculo' => "LJVT_CAT###0001##5793030",
-//                'idVinculoLoja' => "LJVT_CAT_172727_2222",
-//            ));
-//        self::assertIsNumeric($categoriaCriada->id);
-//        self::assertEquals($descricao, $categoriaCriada->descricao);
-//
-//        return $categoriaCriada->id;
-//    }
+    /**
+     * @depends testInsertCategoriaLoja
+     */
+    public function testUpdateCategoriaLoja(mixed $idVinculoCategoria): void
+    {
+        $categoriaCriada = $this
+            ->bling
+            ->categoria_loja(5827317, $idVinculoCategoria)
+            ->update(array(
+                'idCategoria' => "5827317",
+                'descricaoVinculo' => "LJVT_CAT###0001##5827317 - ALTERADO",
+                'idVinculoLoja' => "LJVT_CAT_172727_2222",
+            ));
+        self::assertIsNumeric($categoriaCriada->id);
+        self::assertEquals('LJVT_CAT###0001##5827317 - ALTERADO', $categoriaCriada->descricaoVinculo);
+    }
 
-//    public function testUpdateCategoriaLoja()
-//    {
-//        $categoriaCriada = $this
-//            ->bling
-//            ->categoria_loja(5793030)
-//            ->update(array(
-//                'idCategoria' => "5793030",
-//                'descricaoVinculo' => "LJVT_CAT###0001##5793030",
-//                'idVinculoLoja' => "LJVT_CAT_172727_2222",
-//            ));
-//        self::assertIsNumeric($categoriaCriada->id);
-//        self::assertEquals('LJVT_CAT###0001##5793030', $categoriaCriada->descricaoVinculo);
-//
-//        return $categoriaCriada->id;
-//    }
+    /**
+     * @depends testInsertCategoriaLoja
+     */
+    public function testDeleteCategoriaLojaMustThrowsInvalidEndpointException(mixed $idCategoriaVinculo)
+    {
+        self::expectException(InvalidEndpointException::class);
+        $categoriaLoja = $this
+            ->bling
+            ->categoria_loja($idCategoriaVinculo)
+            ->delete();
+    }
 
-//    public function testDeleteCategoriaLojaMustThrowsInvalidEndpointException()
-//    {
-//        self::expectException(InvalidEndpointException::class);
-//        $categoriaLoja = $this
-//            ->bling
-//            ->categoria_loja(5793030)
-//            ->delete(123);
-//    }
+    /**
+     * @depends testInsertCategoriaLoja
+     */
+    public function testFetchCategoriaLoja(mixed $idVinculoCategoria): void
+    {
+        $categoriaLoja = $this
+            ->bling
+            ->categoria_loja(5827317, $idVinculoCategoria)
+            ->fetch();
 
-//    public function testFetchCategoriaLoja()
-//    {
-//        $idCategoria = 5793030;
-//        $categoriaLoja = $this
-//            ->bling
-//            ->categoria_loja($idCategoria)
-//            ->fetch();
-//
-//        self::assertEquals($idCategoria, $categoriaLoja->idCategoria);
-//    }
-//
-//    public function testFetchAllCategoriaLoja()
-//    {
-//        $categoriasLoja = $this
-//            ->bling
-//            ->categoria_loja()
-//            ->fetchAll();
-//
-//        self::assertIsArray($categoriasLoja);
-//        self::assertNotEmpty($categoriasLoja);
-//    }
+        self::assertEquals($idVinculoCategoria, $categoriaLoja->id);
+    }
+
+    public function testFetchAllCategoriaLoja(): void
+    {
+        $categoriasLoja = $this
+            ->bling
+            ->categoria_loja()
+            ->fetchAll();
+
+        self::assertIsArray($categoriasLoja);
+        self::assertNotEmpty($categoriasLoja);
+    }
 }

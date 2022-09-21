@@ -31,11 +31,11 @@ abstract class Helper
     /**
      * Constrói o namespace de resource da classe enviada
      *
-     * @param $className
+     * @param string $className
      * @return string
      * @throws InvalidResourceException quando o resource construído não foi implementado
      */
-    public static function buildResourceNamespace($className): string
+    public static function buildResourceNamespace(string $className): string
     {
         $className = self::toCamel($className);
         $resourceNamespace = sprintf("%s\\Resources\\%sResource", __NAMESPACE__, $className);
@@ -44,6 +44,34 @@ abstract class Helper
         }
 
         return $resourceNamespace;
+    }
+
+    /**
+     * Retorna o namespace da rota de um resource
+     *
+     * @param string $resourceName
+     * @return string
+     * @throws InvalidResourceException
+     */
+    public static function buildRouteClassName(string $resourceName): string
+    {
+        $resourceNameParts = explode('\\', $resourceName);
+        $resourceName = end($resourceNameParts);
+        $resourceName = strtr($resourceName, array(
+            'Resource' => 'Route'
+        ));
+
+        $routeClassName = sprintf(
+            "%s\\Routes\\%s",
+            __NAMESPACE__,
+            $resourceName
+        );
+
+        if (!class_exists($routeClassName)) {
+            throw new InvalidResourceException("Rota $resourceName não foi implementado.");
+        }
+
+        return $routeClassName;
     }
 
     /**

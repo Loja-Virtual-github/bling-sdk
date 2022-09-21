@@ -2,7 +2,7 @@
 
 namespace LojaVirtual\Bling\Routes;
 
-abstract class ProdutoRoute implements RouteInterface
+class ProdutoRoute extends AbstractRoute implements RouteInterface
 {
 
     /**
@@ -10,7 +10,7 @@ abstract class ProdutoRoute implements RouteInterface
      *
      * @return string
      */
-    public static function fetchAll(): string
+    public function fetchAll(): string
     {
         return 'produtos';
     }
@@ -18,22 +18,20 @@ abstract class ProdutoRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar um produto em específico
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
+    public function fetch(): string
     {
-        return sprintf('produto/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('produto/%s', current($options));
     }
 
     /**
      * Retorna endpoint para inserir um novo produto
      *
-     * @param mixed $id
      * @return string
      */
-    public static function insert(mixed $id = null): string
+    public function insert(): string
     {
         return 'produto';
     }
@@ -41,22 +39,22 @@ abstract class ProdutoRoute implements RouteInterface
     /**
      * Retorna endpoint para atualizar um produto
      *
-     * @param int $id
      * @return string
      */
-    public static function update(int $id): string
+    public function update(): string
     {
-        return sprintf('produto/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('produto/%s', current($options));
     }
 
     /**
      * Retorna um endpoint para deletar um produto
      *
-     * @param int $id
      * @return string
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
-        return sprintf('produto/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('produto/%s', current($options));
     }
 }

@@ -4,14 +4,14 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class ContatoRoute implements RouteInterface
+class ContatoRoute extends AbstractRoute implements RouteInterface
 {
     /**
      * Retorna endpoint para buscar todos os contatos
      *
      * @return string
      */
-    public static function fetchAll(): string
+    public function fetchAll(): string
     {
         return 'contatos';
     }
@@ -19,22 +19,20 @@ abstract class ContatoRoute implements RouteInterface
     /**
      * Retorna o endpoint para buscar um contato em específico
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
+    public function fetch(): string
     {
-        return sprintf('contato/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('contato/%s', current($options));
     }
 
     /**
      * Retorna endpoint para inserir um novo contato
      *
-     * @param mixed|null $id
      * @return string
      */
-    public static function insert(mixed $id = null): string
+    public function insert(): string
     {
         return 'contato';
     }
@@ -42,22 +40,21 @@ abstract class ContatoRoute implements RouteInterface
     /**
      * Retorna endpoint para atualizar um contato
      *
-     * @param int $id
      * @return string
      */
-    public static function update(int $id): string
+    public function update(): string
     {
-        return sprintf('contato/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('contato/%s', current($options));
     }
 
     /**
      * [INDISPONÍVEL] - Retorna o endpoint para deletar um contato
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

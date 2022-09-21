@@ -4,7 +4,7 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class PedidoRoute implements RouteInterface
+class PedidoRoute extends AbstractRoute implements RouteInterface
 {
 
     /**
@@ -12,7 +12,7 @@ abstract class PedidoRoute implements RouteInterface
      *
      * @return string
      */
-    public static function fetchAll(): string
+    public function fetchAll(): string
     {
         return 'pedidos';
     }
@@ -20,22 +20,20 @@ abstract class PedidoRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar um pedido específico
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
+    public function fetch(): string
     {
-        return sprintf('pedido/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('pedido/%s', current($options));
     }
 
     /**
      * Retorna endpoint para inserir um novo pedido
      *
-     * @param mixed|null $id
      * @return string
      */
-    public static function insert(mixed $id = null): string
+    public function insert(): string
     {
         return 'pedido';
     }
@@ -43,22 +41,21 @@ abstract class PedidoRoute implements RouteInterface
     /**
      * Retorna um endpoint para atualizar um pedido
      *
-     * @param int $id
      * @return string
      */
-    public static function update(int $id): string
+    public function update(): string
     {
-        return sprintf('pedido/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('pedido/%s', current($options));
     }
 
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para excluir um pedido
+     * [INDISPONÍVEL]
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

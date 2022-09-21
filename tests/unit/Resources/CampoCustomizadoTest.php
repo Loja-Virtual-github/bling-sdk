@@ -43,12 +43,12 @@ class CampoCustomizadoTest extends BaseTesting
         $this->bling->campo_customizado()->fetchAll();
     }
 
-    public function testFetchCampoCustomizado(): void
+    public function testFetchCampoCustomizadoProdutos(): void
     {
         $campoCustomizado = $this
             ->bling
-            ->campo_customizado()
-            ->fetch(CampoCustomizadoResource::PRODUTOS);
+            ->campo_customizado(CampoCustomizadoResource::PRODUTOS)
+            ->fetch();
 
         self::assertEquals('teste', $campoCustomizado->alias);
         self::assertEquals('Teste', $campoCustomizado->nome);

@@ -6,16 +6,16 @@ use LojaVirtual\Bling\Bling;
 use LojaVirtual\Bling\Exceptions\InvalidArgumentException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class ProdutoLojaRoute implements RouteInterface
+class ProdutoLojaRoute extends AbstractRoute implements RouteInterface
 {
 
     /**
-     * [INDISPONÍVEL] - Retorna todos produtos loja
+     * [INDISPONÍVEL]
      *
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function fetchAll(): string
+    public function fetchAll(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
@@ -23,55 +23,53 @@ abstract class ProdutoLojaRoute implements RouteInterface
     /**
      * Retorna endpoint para lista um vinculo de produto específico
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
+    public function fetch(): string
     {
-        return sprintf('produto/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('produto/%s', current($options));
     }
 
     /**
      * Retorna endpoint para inserir um novo vínculo de produto
      *
-     * @param int|null $id
      * @return string
      * @throws InvalidArgumentException
      */
-    public static function insert(mixed $id = null): string
-    {
-        if (is_null(Bling::$idLoja) || is_null($id)) {
-            throw new InvalidArgumentException("Parâmetros inválidos");
-        }
-
-        return sprintf('produtoLoja/%s/%s', Bling::$idLoja, $id);
-    }
-
-    /**
-     * Retorna endpoint para atualizar um vínculo de produto
-     *
-     * @param int $id
-     * @return string
-     * @throws InvalidArgumentException
-     */
-    public static function update(int $id): string
+    public function insert(): string
     {
         if (is_null(Bling::$idLoja)) {
             throw new InvalidArgumentException("Parâmetros inválidos");
         }
 
-        return sprintf('produtoLoja/%s/%s', Bling::$idLoja, $id);
+        $options = $this->getOptions();
+        return sprintf('produtoLoja/%s/%s', Bling::$idLoja, current($options));
     }
 
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para excluir um vínculo de um produto
+     * Retorna endpoint para atualizar um vínculo de produto
      *
-     * @param int $id
+     * @return string
+     * @throws InvalidArgumentException
+     */
+    public function update(): string
+    {
+        if (is_null(Bling::$idLoja)) {
+            throw new InvalidArgumentException("Parâmetros inválidos");
+        }
+
+        $options = $this->getOptions();
+        return sprintf('produtoLoja/%s/%s', Bling::$idLoja, current($options));
+    }
+
+    /**
+     * [INDISPONÍVEL]
+     *
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

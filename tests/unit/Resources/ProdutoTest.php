@@ -89,16 +89,17 @@ class ProdutoTest extends BaseTesting
     public function testInsertProduct(): mixed
     {
         $payloadProduto = $this->getDadosProduto();
-        $produtos = $this
+        $produto = $this
             ->bling
             ->produto()
             ->insert($payloadProduto);
 
-        self::assertNotEmpty($produtos);
-        self::assertEquals('5827317', $produtos[0]->codigo);
-        self::assertEquals('Caneta 001', $produtos[0]->descricao);
+        self::assertNotEmpty($produto);
+        self::assertEquals('5827317', $produto->codigo);
+        self::assertEquals('Caneta 001', $produto->descricao);
+        self::assertObjectHasAttribute('variacoes', $produto);
 
-        return $produtos[0]->codigo;
+        return $produto->codigo;
     }
 
     /**
@@ -108,14 +109,14 @@ class ProdutoTest extends BaseTesting
     {
         $payloadProduto = $this->getDadosProduto();
         $payloadProduto['produto']['descricao'] = 'DESCRICAO ALTERADA';
-        $produtos = $this
+        $produto = $this
             ->bling
             ->produto($codigoProduto)
             ->update($payloadProduto);
 
-        self::assertNotEmpty($produtos);
-        self::assertEquals('5827317', $produtos[0]->codigo);
-        self::assertEquals('DESCRICAO ALTERADA', $produtos[0]->descricao);
+        self::assertNotEmpty($produto);
+        self::assertEquals('5827317', $produto->codigo);
+        self::assertEquals('DESCRICAO ALTERADA', $produto->descricao);
 
         return $codigoProduto;
     }

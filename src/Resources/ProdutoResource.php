@@ -2,10 +2,10 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Request\HttpMethodsEnum;
-use LojaVirtual\Bling\Routes\ProdutoRoute;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class ProdutoResource extends AbstractResource implements ResourceInterface
 {
@@ -13,34 +13,28 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
      * Buscar um produto específico
      *
      * @return mixed
-     * @throws GuzzleException
+     * @throws InvalidResourceException
      */
-    public function fetch(): mixed
+    public function fetch(): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                ProdutoRoute::fetch(...$this->getOptions())
-            );
-
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH)
+        );
     }
 
     /**
      * Buscar todos os produtos
      *
      * @return array
-     * @throws GuzzleException
+     * @throws InvalidResourceException
      */
     public function fetchAll(): array
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                ProdutoRoute::fetchAll()
-            );
-
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH_ALL)
+        );
     }
 
     /**
@@ -48,20 +42,17 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return mixed
-     * @throws GuzzleException
+     * @throws InvalidResourceException
      */
-    public function insert(array $payload): mixed
+    public function insert(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::POST->value,
-                ProdutoRoute::insert(),
-                array(
-                    'xml' => $this->payloadToXML($payload, 'produto')
-                )
-            );
-
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::POST,
+            $this->getEndpoint(AvailableRoutes::INSERT),
+            array(
+                'xml' => $this->payloadToXML($payload, 'produto')
+            )
+        );
     }
 
     /**
@@ -69,29 +60,26 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return mixed
-     * @throws GuzzleException
+     * @throws InvalidResourceException
      */
-    public function update(array $payload): mixed
+    public function update(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::POST->value,
-                ProdutoRoute::update(...$this->getOptions()),
-                array(
-                    'xml' => $this->payloadToXML($payload, 'produto')
-                )
-            );
-
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::POST,
+            $this->getEndpoint(AvailableRoutes::UPDATE),
+            array(
+                'xml' => $this->payloadToXML($payload, 'produto')
+            )
+        );
     }
 
     /**
      * [INDISPONÍVEL]
      *
-     * @return void
+     * @return mixed
      * @throws InvalidEndpointException
      */
-    public function delete(): void
+    public function delete(): mixed
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

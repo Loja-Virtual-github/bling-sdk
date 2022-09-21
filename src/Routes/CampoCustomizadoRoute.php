@@ -4,16 +4,15 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-class CampoCustomizadoRoute implements RouteInterface
+class CampoCustomizadoRoute extends AbstractRoute implements RouteInterface
 {
-
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para buscar todos campos customizados do módulo
+     * [INDISPONÍVEL]
      *
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function fetchAll(): string
+    public function fetchAll(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
@@ -21,47 +20,43 @@ class CampoCustomizadoRoute implements RouteInterface
     /**
      * Retorna os campos customizados de um determinado módulo
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
+    public function fetch(): string
     {
-        return sprintf('camposcustomizados/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('camposcustomizados/%s', current($options));
     }
 
     /**
-     * [INDISPONÍVEL] - Insere um novo campo customizado
+     * [INDISPONÍVEL]
      *
-     * @param mixed|null $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function insert(mixed $id = null): string
+    public function insert(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
 
     /**
-     * [INDISPONÍVEL] - Atualiza um campo customizado de um módulo
+     * [INDISPONÍVEL]
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function update(int $id): string
+    public function update(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
 
     /**
-     * [INDISPONÍVEL] - Deleta um campo customizado de um módulo
+     * [INDISPONÍVEL]
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

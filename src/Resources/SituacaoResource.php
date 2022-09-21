@@ -2,78 +2,69 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\HttpMethodsEnum;
-use LojaVirtual\Bling\Routes\SituacaoRoute;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class SituacaoResource extends AbstractResource implements ResourceInterface
 {
+    /**
+     * [INDISPONÍVEL]
+     *
+     * @return object
+     * @throws InvalidEndpointException
+     */
+    public function fetch(): object
+    {
+        throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
+    }
 
     /**
-     * Busca todas situacoes de venda
+     * Retorna todas as situações de um determinado módulo
      *
      * @return array
-     * @throws GuzzleException
-     * @throws BlingException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidEndpointException
      */
-    public function fetch(): array
+    public function fetchAll(): array
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                SituacaoRoute::fetch('Vendas')
-            );
+        $this->setOptions(['Vendas']);
 
-        $responseParsed = $this->parseResponse($response, 'situacao');
-        return $this->unwrapFetchAll($responseParsed->situacoes, 'situacao');
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH_ALL)
+        );
     }
 
     /**
-     * [INDISPONÍVEL] Buscar todas situação específica
+     * [INDISPONÍVEL]
      *
-     * @return void
+     * @param array $payload
+     * @return object
      * @throws InvalidEndpointException
      */
-    public function fetchAll(): void
+    public function insert(array $payload): object
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }
 
     /**
-     * [INDISPONÍVEL] Inserir uma situação
+     * [INDISPONÍVEL]
      *
-     * @return void
+     * @return object
      * @throws InvalidEndpointException
      */
-    public function insert(): void
+    public function update(array $payload): object
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }
 
     /**
-     * [INDISPONÍVEL] Atualizar uma situação
+     * [INDISPONÍVEL]
      *
-     * @return void
+     * @return mixed
      * @throws InvalidEndpointException
      */
-    public function update(): void
-    {
-        throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
-    }
-
-    /**
-     * [INDISPONÍVEL] Deletar uma situação
-     *
-     * @return void
-     * @throws InvalidEndpointException
-     */
-    public function delete(): void
+    public function delete(): mixed
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

@@ -2,9 +2,11 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use LojaVirtual\Bling\Request\ResponseHandler;
-
 interface ResourceInterface
 {
-
+    public function fetch(): object;
+    public function fetchAll(): array;
+    public function insert(array $payload): object;
+    public function update(array $payload): object;
+    public function delete(): mixed;
 }

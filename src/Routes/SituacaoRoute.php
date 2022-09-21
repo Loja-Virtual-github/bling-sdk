@@ -4,64 +4,60 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class SituacaoRoute implements RouteInterface
+class SituacaoRoute extends AbstractRoute implements RouteInterface
 {
 
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para listar todas as situações
+     * Retorna todas situações de um determinado módulo
+     *
+     * @return string
+     */
+    public function fetchAll(): string
+    {
+        $options = $this->getOptions();
+        return sprintf("situacao/%s", current($options));
+    }
+
+    /**
+     * [INDISPONÍVEL]
      *
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function fetchAll(): string
+    public function fetch(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
 
     /**
-     * Retorna endpoint para buscar uma situação específica
+     * [INDISPONÍVEL]
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
-     * @return string
-     */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
-    {
-        return sprintf("situacao/%s", $id);
-    }
-
-    /**
-     * [INDISPONÍVEL] - Retorna endpoint para inserir uma nova situação
-     *
-     * @param mixed $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function insert(mixed $id = null): string
+    public function insert(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
 
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para atualizar uma situação
+     * [INDISPONÍVEL]
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function update(int $id): string
+    public function update(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }
 
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para excluir uma situação
+     * [INDISPONÍVEL]
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

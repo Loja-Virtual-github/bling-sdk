@@ -70,7 +70,7 @@ class Request
      * @throws GuzzleException
      */
     public function sendRequest(
-        string $method,
+        HttpMethods $method,
         string $endpoint,
         array $options = []
     ): ResponseHandler {
@@ -78,9 +78,9 @@ class Request
             $response = $this
                 ->http_client
                 ->request(
-                    $method,
+                    $method->value,
                     sprintf("%s/json/", $endpoint),
-                    $this->preparePayload($method, $options)
+                    $this->preparePayload($method->value, $options)
                 );
             sleep(1);
             return ResponseHandler::success($response);

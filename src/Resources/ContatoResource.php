@@ -2,13 +2,10 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\HttpMethodsEnum;
-use LojaVirtual\Bling\Routes\ContatoRoute;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class ContatoResource extends AbstractResource implements ResourceInterface
 {
@@ -24,26 +21,18 @@ class ContatoResource extends AbstractResource implements ResourceInterface
      * Busca um contato específico
      *
      * @return object
-     * @throws BlingException
-     * @throws GuzzleException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
     public function fetch(): object
     {
         $options = $this->getOptions();
-
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                ContatoRoute::fetch(...$this->getOptions()),
-                array(
-                    'identificador' => $this->getTipoIdentificador($options[0])
-                )
-            );
-
-        $responseParsed = $this->parseResponse($response, 'contatos');
-        return $responseParsed->contatos[0]->contato;
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH),
+            array(
+                'identificador' => $this->getTipoIdentificador(current($options))
+            )
+        );
     }
 
     /**
@@ -63,80 +52,65 @@ class ContatoResource extends AbstractResource implements ResourceInterface
      * Retorna todos os contatos
      *
      * @return array
-     * @throws BlingException
-     * @throws GuzzleException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
     public function fetchAll(): array
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                ContatoRoute::fetchAll()
-            );
-
-        $responseParsed = $this->parseResponse($response, 'contatos');
-        return $this->unwrapFetchAll($responseParsed->contatos, 'contato');
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH_ALL),
+        );
     }
 
     /**
      * Inserir um novo contato
      *
-     * @param array $params
+     * @param array $payload
      * @return object
-     * @throws GuzzleException
-     * @throws BlingException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
-    public function insert(array $params): object
+    public function insert(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::POST->value,
-                ContatoRoute::insert(),
-                array(
-                    'xml' => $this->payloadToXML($params, 'contato')
+        return $this->request(
+            HttpMethods::POST,
+            $this->getEndpoint(AvailableRoutes::INSERT),
+            array(
+                'xml' => $this->payloadToXML(
+                    $payload,
+                    'contato'
                 )
-            );
-
-        $responseParsed = $this->parseResponse($response, 'contatos');
-        return $responseParsed->contatos->contato;
+            )
+        );
     }
 
     /**
      * Atualiza um contato
      *
-     * @param array $params
+     * @param array $payload
      * @return object
-     * @throws BlingException
-     * @throws GuzzleException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
-    public function update(array $params): object
+    public function update(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::PUT->value,
-                ContatoRoute::update(...$this->getOptions()),
-                array(
-                    'xml' => $this->payloadToXML($params, 'contato')
+        return $this->request(
+            HttpMethods::PUT,
+            $this->getEndpoint(AvailableRoutes::UPDATE),
+            array(
+                'xml' => $this->payloadToXML(
+                    $payload,
+                    'contato'
                 )
-            );
-
-        $responseParsed = $this->parseResponse($response, 'contatos');
-        return $responseParsed->contatos->contato;
+            )
+        );
     }
 
     /**
-     * [INDISPONÍVEL] Deletar um contato
+     * [INDISPONÍVEL]
      *
-     * @return void
+     * @return mixed
      * @throws InvalidEndpointException
      */
-    public function delete(): void
+    public function delete(): mixed
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

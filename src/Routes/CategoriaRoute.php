@@ -4,7 +4,7 @@ namespace LojaVirtual\Bling\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
-abstract class CategoriaRoute implements RouteInterface
+class CategoriaRoute extends AbstractRoute implements RouteInterface
 {
 
     /**
@@ -12,7 +12,7 @@ abstract class CategoriaRoute implements RouteInterface
      *
      * @return string
      */
-    public static function fetchAll(): string
+    public function fetchAll(): string
     {
         return 'categorias';
     }
@@ -20,22 +20,20 @@ abstract class CategoriaRoute implements RouteInterface
     /**
      * Retorna endpoint para buscar uma categoria em específico
      *
-     * @param int|string $id
-     * @param int|null $idSecundario
      * @return string
      */
-    public static function fetch(int|string $id, ?int $idSecundario = null): string
+    public function fetch(): string
     {
-        return sprintf("categoria/%s", $id);
+        $options = $this->getOptions();
+        return sprintf("categoria/%s", current($options));
     }
 
     /**
      * Retorna endpoint para inserir uma nova categoria
      *
-     * @param mixed|null $id
      * @return string
      */
-    public static function insert(mixed $id = null): string
+    public function insert(): string
     {
         return 'categoria';
     }
@@ -43,22 +41,21 @@ abstract class CategoriaRoute implements RouteInterface
     /**
      * Retorna endpoint para atualizar uma categoria
      *
-     * @param int $id
      * @return string
      */
-    public static function update(int $id): string
+    public function update(): string
     {
-        return sprintf('categoria/%s', $id);
+        $options = $this->getOptions();
+        return sprintf('categoria/%s', current($options));
     }
 
     /**
-     * [INDISPONÍVEL] - Retorna endpoint para deletar uma categoria
+     * [INDISPONÍVEL]
      *
-     * @param int $id
      * @return string
      * @throws InvalidEndpointException
      */
-    public static function delete(int $id): string
+    public function delete(): string
     {
         throw new InvalidEndpointException("Endpoint indisponível para esta funcionalidade.");
     }

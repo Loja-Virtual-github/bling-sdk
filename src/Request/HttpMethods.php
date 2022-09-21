@@ -2,7 +2,7 @@
 
 namespace LojaVirtual\Bling\Request;
 
-enum HttpMethodsEnum: string
+enum HttpMethods: string
 {
     case POST = 'POST';
     case PUT = 'PUT';

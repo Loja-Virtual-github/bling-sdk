@@ -2,13 +2,10 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\HttpMethodsEnum;
-use LojaVirtual\Bling\Routes\CampoCustomizadoRoute;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class CampoCustomizadoResource extends AbstractResource implements ResourceInterface
 {
@@ -18,32 +15,36 @@ class CampoCustomizadoResource extends AbstractResource implements ResourceInter
     /**
      * Retorna os campos customizados de um módulo
      *
-     * @param string $modulo
+     * @return mixed
+     * @throws InvalidResourceException
+     */
+    public function fetch(): object
+    {
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH)
+        );
+    }
+
+    /**
+     * [INDISPONÍVEL]
+     *
+     * @return array
+     * @throws InvalidEndpointException
+     */
+    public function fetchAll(): array
+    {
+        throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
+    }
+
+    /**
+     * [INDISPONÍVEL]
+     *
+     * @param array $payload
      * @return object
-     * @throws GuzzleException
-     * @throws BlingException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
-     */
-    public function fetch(string $modulo): object
-    {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                CampoCustomizadoRoute::fetch($modulo)
-            );
-
-        $responseParsed = $this->parseResponse($response, 'camposcustomizados');
-        return $responseParsed;
-    }
-
-    /**
-     * [INDISPONÍVEL]
-     *
-     * @return void
      * @throws InvalidEndpointException
      */
-    public function fetchAll(): void
+    public function insert(array $payload): object
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }
@@ -51,10 +52,11 @@ class CampoCustomizadoResource extends AbstractResource implements ResourceInter
     /**
      * [INDISPONÍVEL]
      *
-     * @return void
-     * @throws InvalidEndpointException
+     * @param array $payload
+     * @return object
+     * @throws InvalidEndpointException [
      */
-    public function insert(): void
+    public function update(array $payload): object
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }
@@ -62,21 +64,10 @@ class CampoCustomizadoResource extends AbstractResource implements ResourceInter
     /**
      * [INDISPONÍVEL]
      *
-     * @return void
-     * @throws InvalidEndpointException[
-     */
-    public function update(): void
-    {
-        throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
-    }
-
-    /**
-     * [INDISPONÍVEL]
-     *
-     * @return void
+     * @return mixed
      * @throws InvalidEndpointException
      */
-    public function delete(): void
+    public function delete(): mixed
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

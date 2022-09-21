@@ -29,6 +29,7 @@ class CategoriaResourceTest extends BaseTesting
                 'descricao' => $descricao,
                 'idCategoriaPai' => 0
             ));
+
         self::assertIsNumeric($categoriaCriada->id);
         self::assertEquals($descricao, $categoriaCriada->descricao);
 

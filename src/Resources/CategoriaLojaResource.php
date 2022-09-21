@@ -2,14 +2,10 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\BlingException;
-use LojaVirtual\Bling\Exceptions\InvalidArgumentException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidXmlException;
-use LojaVirtual\Bling\Request\HttpMethodsEnum;
-use LojaVirtual\Bling\Routes\CategoriaLojaRoute;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class CategoriaLojaResource extends AbstractResource implements ResourceInterface
 {
@@ -17,105 +13,79 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
      * Retorna um vinculo de categoria loja
      *
      * @return object
-     * @throws BlingException
-     * @throws GuzzleException
-     * @throws InvalidArgumentException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
     public function fetch(): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                CategoriaLojaRoute::fetch(...$this->getOptions())
-            );
-
-        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
-        return $responseParsed->categoriasLoja[0]->categoriaLoja;
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH)
+        );
     }
 
     /**
      * Retorna todas as categorias vinculadas com a loja
      *
      * @return array
-     * @throws BlingException
-     * @throws GuzzleException
-     * @throws InvalidArgumentException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
     public function fetchAll(): array
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::GET->value,
-                CategoriaLojaRoute::fetchAll()
-            );
-
-        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
-        return $this->unwrapFetchAll($responseParsed->categoriasLoja, 'categoriaLoja');
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH_ALL)
+        );
     }
 
     /**
      * Insere um vínculo de categoria com loja
      *
-     * @param array $params
+     * @param array $payload
      * @return object
-     * @throws BlingException
-     * @throws GuzzleException
-     * @throws InvalidArgumentException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
-    public function insert(array $params): object
+    public function insert(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::POST->value,
-                CategoriaLojaRoute::insert(...$this->getOptions()),
-                array(
-                    'xml' => $this->payloadToXML(['categorialoja' => $params], 'categoriasloja')
+        return $this->request(
+            HttpMethods::POST,
+            $this->getEndpoint(AvailableRoutes::INSERT),
+            array(
+                'xml' => $this->payloadToXML(
+                    ['categorialoja' => $payload],
+                    'categoriasloja'
                 )
-            );
-
-        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
-        return $responseParsed->categoriasLoja[0][0]->categoriaLoja;
+            )
+        );
     }
 
     /**
-     * Atualiza um vinculo de categoria com loja
+     * Atualiza um vínculo de categoria com loja
      *
-     * @param array $params
+     * @param array $payload
      * @return object
-     * @throws GuzzleException
-     * @throws BlingException
-     * @throws InvalidArgumentException
-     * @throws InvalidJsonException
-     * @throws InvalidXmlException
+     * @throws InvalidResourceException
      */
-    public function update(array $params): object
+    public function update(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethodsEnum::PUT->value,
-                CategoriaLojaRoute::update(...$this->getOptions()),
-                array(
-                    'xml' => $this->payloadToXML(['categorialoja' => $params], 'categoriasloja')
+        return $this->request(
+            HttpMethods::PUT,
+            $this->getEndpoint(AvailableRoutes::UPDATE),
+            array(
+                'xml' => $this->payloadToXML(
+                    ['categorialoja' => $payload],
+                    'categoriasloja'
                 )
-            );
-
-        $responseParsed = $this->parseResponse($response, 'categoriasLoja');
-        return $responseParsed->categoriasLoja[0][0]->categoriaLoja;
+            )
+        );
     }
 
     /**
-     * [INDISPONÍVEL] Deletar um vinculo de categoria com loja
+     * [INDISPONÍVEL]
      *
-     * @return void
+     * @return mixed
      * @throws InvalidEndpointException
      */
-    public function delete(): void
+    public function delete(): mixed
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

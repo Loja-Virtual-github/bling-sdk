@@ -19,20 +19,20 @@ class SituacaoResourceTest extends BaseTesting
         parent::__construct($name, $data, $dataName);
     }
 
-    public function testFetchSituacoes(): void
+    public function testFetchAllSituacoes(): void
     {
         $situacoes = $this
             ->bling
-            ->situacao()
-            ->fetch();
+            ->situacao('Vendas')
+            ->fetchAll();
         self::assertIsArray($situacoes);
         self::assertNotEmpty($situacoes);
     }
 
-    public function testFetchAllSituacaoMustThrowsInvalidEndpointException(): void
+    public function testFetchSituacaoMustThrowsInvalidEndpointException(): void
     {
         self::expectException(InvalidEndpointException::class);
-        $this->bling->situacao()->fetchAll([]);
+        $this->bling->situacao()->fetch();
     }
 
     public function testInsertSituacaoMustThrowsInvalidEndpointException(): void
