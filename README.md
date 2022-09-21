@@ -25,11 +25,11 @@
     - [X] FETCH
     - [X] FETCH ALL
 
-- [ ] Implementar CRUD de nota fiscal
-    -  [ ] INSERT
-    -  [ ] UPDATE
-    -  [ ] FETCH
-    -  [ ] FETCH ALL
+- [X] Implementar CRUD de nota fiscal
+    -  [X] INSERT
+    -  [X] UPDATE
+    -  [X] FETCH
+    -  [X] FETCH ALL
 
 -  [X] Implementar CRUD de pedido
     -  [X] INSERT
