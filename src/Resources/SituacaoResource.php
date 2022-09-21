@@ -27,8 +27,6 @@ class SituacaoResource extends AbstractResource implements ResourceInterface
      */
     public function fetchAll(): array
     {
-        $this->setOptions(['Vendas']);
-
         return $this->request(
             HttpMethods::GET,
             $this->getEndpoint(AvailableRoutes::FETCH_ALL)

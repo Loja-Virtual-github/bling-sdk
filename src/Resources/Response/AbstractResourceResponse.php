@@ -46,6 +46,10 @@ abstract class AbstractResourceResponse
             return current($responseParsed);
         }
 
+        if (empty($responseParsed)) {
+            return $body;
+        }
+
         return $responseParsed;
     }
 
@@ -76,9 +80,11 @@ abstract class AbstractResourceResponse
                 return sprintf("#%s | %s", $erro->erro->cod, $erro->erro->msg);
             }, $erros);
         } else {
-            $erros = [
-                sprintf("#%s | %s", $erros->erro->cod, $erros->erro->msg)
-            ];
+            if (property_exists($erros, 'erro')) {
+                $erros = [
+                    sprintf("#%s | %s", $erros->erro->cod, $erros->erro->msg)
+                ];
+            }
         }
 
         if (is_object($erros)) {

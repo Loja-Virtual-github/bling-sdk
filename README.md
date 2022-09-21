@@ -43,11 +43,11 @@
     - [X] FETCH
     - [X] FETCH ALL
 
-- [ ] Implementar CRUD de produto loja
-    - [ ] INSERT
-    - [ ] UPDATE
-    - [ ] FETCH
-    - [ ] FETCH ALL
+- [X] Implementar CRUD de produto loja
+    - [X] INSERT
+    - [X] UPDATE
+    - [X] FETCH
+    - [X] FETCH ALL
 
 - [X] Implementar CRUD de situacao
     - [X] INSERT

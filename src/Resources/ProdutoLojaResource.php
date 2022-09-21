@@ -2,10 +2,11 @@
 
 namespace LojaVirtual\Bling\Resources;
 
-use GuzzleHttp\Exception\GuzzleException;
+use LojaVirtual\Bling\Bling;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Request\HttpMethods;
-use LojaVirtual\Bling\Routes\ProdutoLojaRoute;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class ProdutoLojaResource extends AbstractResource implements ResourceInterface
 {
@@ -13,32 +14,28 @@ class ProdutoLojaResource extends AbstractResource implements ResourceInterface
      * Buscar um produto específico
      *
      * @return mixed
-     * @throws GuzzleException
+     * @throws InvalidEndpointException
      */
-    public function fetch(): mixed
+    public function fetch(): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethods::GET->value,
-            );
-
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::GET,
+            $this->getEndpoint(AvailableRoutes::FETCH),
+            array(
+                'loja' => Bling::$idLoja
+            )
+        );
     }
 
     /**
-     * Buscar todos os produtos
+     * [INDISPONÍVEL]
      *
      * @return array
-     * @throws GuzzleException
+     * @throws InvalidEndpointException
      */
     public function fetchAll(): array
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethods::GET->value,
-            );
-
-        return $this->resourceResponseHandler->parse($response);
+        throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }
 
     /**
@@ -46,19 +43,25 @@ class ProdutoLojaResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return mixed
-     * @throws GuzzleException
+     * @throws InvalidEndpointException
+     * @throws InvalidResponseFormatException
      */
-    public function insert(array $payload): mixed
+    public function insert(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethods::POST->value,
-                array(
-                    'xml' => $this->payloadToXML($payload, 'produto')
-                )
-            );
+        if (empty($payload['idLojaVirtual'])) {
+            $payload['idLojaVirtual'] = Bling::$idLoja;
+        }
 
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::POST,
+            $this->getEndpoint(AvailableRoutes::INSERT),
+            array(
+                'xml' => $this->payloadToXML(
+                    ['produtoLoja' => $payload],
+                    'produtosLoja'
+                )
+            )
+        );
     }
 
     /**
@@ -66,28 +69,34 @@ class ProdutoLojaResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return mixed
-     * @throws GuzzleException
+     * @throws InvalidEndpointException
+     * @throws InvalidResponseFormatException
      */
-    public function update(array $payload): mixed
+    public function update(array $payload): object
     {
-        $response = $this->request
-            ->sendRequest(
-                HttpMethods::POST->value,
-                array(
-                    'xml' => $this->payloadToXML($payload, 'produto')
-                )
-            );
+        if (empty($payload['idLojaVirtual'])) {
+            $payload['idLojaVirtual'] = Bling::$idLoja;
+        }
 
-        return $this->resourceResponseHandler->parse($response);
+        return $this->request(
+            HttpMethods::PUT,
+            $this->getEndpoint(AvailableRoutes::UPDATE),
+            array(
+                'xml' => $this->payloadToXML(
+                    ['produtoLoja' => $payload],
+                    'produtosLoja'
+                )
+            )
+        );
     }
 
     /**
      * [INDISPONÍVEL]
      *
-     * @return void
+     * @return mixed
      * @throws InvalidEndpointException
      */
-    public function delete(): void
+    public function delete(): mixed
     {
         throw new InvalidEndpointException("Esta funcionalidade está indisponível.");
     }

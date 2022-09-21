@@ -12,10 +12,12 @@ use LojaVirtual\Bling\Format\FormatFactory;
 class ResponseHandler
 {
     private readonly Response $response;
+    private readonly string $bodyContent;
 
     protected function __construct(Response $response)
     {
         $this->response = $response;
+        $this->bodyContent = $response->getBody()->getContents();
     }
 
     /**
@@ -45,15 +47,10 @@ class ResponseHandler
      *
      * @return mixed
      */
-    public function getBody(): mixed
+    public function getBody($debug = false): mixed
     {
-        $contentBody = $this
-            ->response
-            ->getBody()
-            ->getContents();
-
         $formater = FormatFactory::factory($this->getContentType());
-        $body = $formater->from($contentBody);
+        $body = $formater->from($this->bodyContent, $debug);
         return $body;
     }
 
