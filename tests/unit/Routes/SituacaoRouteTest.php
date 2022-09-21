@@ -3,41 +3,47 @@
 namespace LojaVirtual\Bling\Tests\unit\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Routes\SituacaoRoute;
+use LojaVirtual\Bling\Routes\RouteFactory;
+use LojaVirtual\Bling\Routes\RouteInterface;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class SituacaoRouteTest extends BaseTesting
 {
-    public function testCallFetchAllMustThrowsInvalidEndpointException()
+    private RouteInterface $route;
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        self::expectException(InvalidEndpointException::class);
-        $endpoint = SituacaoRoute::fetchAll();
+        $this->route = RouteFactory::factory('SituacaoResource', [123]);
+        parent::__construct($name, $data, $dataName);
     }
 
-    public function testCallFetchMustReturnString()
+    public function testCallFetchAll()
     {
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = SituacaoRoute::fetch($id);
-        self::assertEquals("situacao/$id", $endpoint);
+        $endpoint = $this->route->fetchAll();
+        self::assertEquals('situacao/123', $endpoint);
+    }
+
+    public function testCallFetchMustThrowsInvalidEndpointException()
+    {
+        self::expectException(InvalidEndpointException::class);
+        $endpoint = $this->route->fetch();
     }
 
     public function testCallInsertMustThrowsInvalidEndpointException()
     {
         self::expectException(InvalidEndpointException::class);
-        $endpoint = SituacaoRoute::insert();
+        $endpoint = $this->route->insert();
     }
 
     public function testCallUpdateMustThrowsInvalidEndpointException()
     {
         self::expectException(InvalidEndpointException::class);
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = SituacaoRoute::update($id);
+        $endpoint = $this->route->update();
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()
     {
         self::expectException(InvalidEndpointException::class);
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = SituacaoRoute::delete($id);
+        $endpoint = $this->route->delete();
     }
 }

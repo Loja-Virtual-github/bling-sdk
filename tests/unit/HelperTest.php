@@ -5,6 +5,8 @@ namespace LojaVirtual\Bling\Tests\unit;
 use LojaVirtual\Bling\Exceptions\InvalidResourceException;
 use LojaVirtual\Bling\Helper;
 use LojaVirtual\Bling\Resources\CategoriaResource;
+use LojaVirtual\Bling\Resources\Response\CategoriaResponse;
+use LojaVirtual\Bling\Routes\CategoriaRoute;
 
 class HelperTest extends BaseTesting
 {
@@ -25,5 +27,17 @@ class HelperTest extends BaseTesting
     {
         $resource = Helper::buildResourceNamespace('categoria');
         self::assertEquals(CategoriaResource::class, $resource);
+    }
+
+    public function testBuildRouteClassName(): void
+    {
+        $routeClassName = Helper::buildRouteClassName('CategoriaResource');
+        self::assertEquals(CategoriaRoute::class, $routeClassName);
+    }
+
+    public function testBuildResponseResourceClassName(): void
+    {
+        $routeClassName = Helper::buildResponseResourceClassName('CategoriaResource');
+        self::assertEquals(CategoriaResponse::class, $routeClassName);
     }
 }

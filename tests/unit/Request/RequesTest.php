@@ -4,41 +4,21 @@ namespace LojaVirtual\Bling\Tests\unit\Request;
 
 use LojaVirtual\Bling\Bling;
 use LojaVirtual\Bling\Request\Request;
+use LojaVirtual\Bling\Request\RequestFactory;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class RequesTest extends BaseTesting
 {
-    public function testGetInstanceAlwaysMustReturnAnSingleInstance()
+    private $request;
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
-        $request = Request::getInstance();
-        $request2 = Request::getInstance();
-        self::assertEquals($request, $request2);
+        $this->request = RequestFactory::factory();
+        parent::__construct($name, $data, $dataName);
     }
 
-    private function formParamsTypesProvider()
+    public function testInstanceOf(): void
     {
-        return [
-            [Request::POST],
-            [Request::PUT]
-        ];
-    }
-
-    /**
-     * @dataProvider formParamsTypesProvider
-     */
-    public function testPrepareFormParamsPayload(string $method)
-    {
-        $bling = new Bling('teste');
-        $payload = array('xml' => '<teste/>');
-        $payloadPrepared = Request::preparePayload($method, $payload);
-        $payloadExpected = array(
-            'form_params' => array(
-                'xml' => '<teste/>',
-                'apikey' => 'teste'
-            ),
-            'debug' => false
-        );
-
-        self::assertEquals($payloadExpected, $payloadPrepared);
+        self::assertInstanceOf(Request::class, $this->request);
     }
 }

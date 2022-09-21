@@ -4,40 +4,47 @@ namespace LojaVirtual\Bling\Tests\unit\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Routes\ContatoRoute;
+use LojaVirtual\Bling\Routes\RouteFactory;
+use LojaVirtual\Bling\Routes\RouteInterface;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class ContatoRouteTest extends BaseTesting
 {
+    private RouteInterface $route;
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
+        $this->route = RouteFactory::factory('ContatoResource', [123]);
+        parent::__construct($name, $data, $dataName);
+    }
+
     public function testCallFetchAllMustReturnString()
     {
-        $endpoint = ContatoRoute::fetchAll();
+        $endpoint = $this->route->fetchAll();
         self::assertEquals('contatos', $endpoint);
     }
 
     public function testCallFetchMustReturnString()
     {
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = ContatoRoute::fetch($id);
-        self::assertEquals("contato/$id", $endpoint);
+        $endpoint = $this->route->fetch();
+        self::assertEquals("contato/123", $endpoint);
     }
 
     public function testCallInsertMustReturnString()
     {
-        $endpoint = ContatoRoute::insert();
+        $endpoint = $this->route->insert();
         self::assertEquals('contato', $endpoint);
     }
 
     public function testCallUpdateMustReturnString()
     {
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = ContatoRoute::update($id);
-        self::assertEquals("contato/$id", $endpoint);
+        $endpoint = $this->route->update();
+        self::assertEquals("contato/123", $endpoint);
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()
     {
         self::expectException(InvalidEndpointException::class);
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = ContatoRoute::delete($id);
+        $endpoint = $this->route->delete();
     }
 }

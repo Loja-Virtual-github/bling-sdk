@@ -23,7 +23,7 @@ class BlingTest extends BaseTesting
 
     public function testGetTimeout(): void
     {
-        self::assertEquals(1.0, Bling::getTimeout());
+        self::assertEquals(30, Bling::getTimeout());
     }
 
     public function testGetFormat(): void

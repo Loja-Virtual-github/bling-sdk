@@ -5,44 +5,49 @@ namespace LojaVirtual\Bling\Tests\unit\Routes;
 use LojaVirtual\Bling\Bling;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Routes\CategoriaLojaRoute;
+use LojaVirtual\Bling\Routes\RouteFactory;
+use LojaVirtual\Bling\Routes\RouteInterface;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class CategoriaLojaRouteTest extends BaseTesting
 {
+    private RouteInterface $route;
+    private Bling $bling;
+
+    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
+        $this->route = RouteFactory::factory('CategoriaLojaResource', [123]);
+        $this->bling = Bling::client('token', 123123);
+        parent::__construct($name, $data, $dataName);
+    }
+
     public function testCallFetchAllWithIdMustReturnEndpoint()
     {
-        $bling = Bling::client('token', 123123);
-        $endpoint = CategoriaLojaRoute::fetchAll();
+        $endpoint = $this->route->fetchAll();
         self::assertEquals("categoriasLoja/123123", $endpoint);
     }
 
     public function testCallFetchWithValidParamsMustReturnEndpoint()
     {
-        $id = $this->faker->unique()->randomDigit();
-        $bling = Bling::client('token', 123123);
-        $endpoint = CategoriaLojaRoute::fetch($id);
-        self::assertEquals("categoriasLoja/123123/$id", $endpoint);
+        $endpoint = $this->route->fetch();
+        self::assertEquals("categoriasLoja/123123/123", $endpoint);
     }
 
     public function testCallInsertWithAllParamsMustReturnEndpoint()
     {
-        $bling = Bling::client('token', 123123);
-        $endpoint = CategoriaLojaRoute::insert();
+        $endpoint = $this->route->insert();
         self::assertEquals("categoriasLoja/123123", $endpoint);
     }
 
     public function testCallUpdateWithValidParamsMustReturnEndpoint()
     {
-        $bling = Bling::client('token', 123123);
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = CategoriaLojaRoute::update($id);
-        self::assertEquals("categoriasLoja/123123/$id", $endpoint);
+        $endpoint = $this->route->update();
+        self::assertEquals("categoriasLoja/123123/123", $endpoint);
     }
 
     public function testCallDeleteMustThrowsInvalidEndpointException()
     {
         self::expectException(InvalidEndpointException::class);
-        $id = $this->faker->unique()->randomDigit();
-        $endpoint = CategoriaLojaRoute::delete($id);
+        $endpoint = $this->route->delete();
     }
 }
