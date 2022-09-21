@@ -7,49 +7,24 @@ use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Request\HttpMethods;
 use LojaVirtual\Bling\Routes\AvailableRoutes;
 
-class ContatoResource extends AbstractResource implements ResourceInterface
+class DepositoResource extends AbstractResource implements ResourceInterface
 {
     /**
-     * Tipo de identificador para buscar um contato
-     */
-    protected const TIPO_IDENTIFICADO = [
-        'cpf_cnpj' => '1',
-        'id' => '2'
-    ];
-
-    /**
-     * Busca um contato específico
+     * Retorna um depósito em específico
      *
      * @return object
      * @throws InvalidEndpointException
      */
     public function fetch(): object
     {
-        $options = $this->getOptions();
         return $this->request(
             HttpMethods::GET,
             $this->getEndpoint(AvailableRoutes::FETCH),
-            array(
-                'identificador' => $this->getTipoIdentificador(current($options))
-            )
         );
     }
 
     /**
-     * Retorna o tipo de identificador
-     *
-     * @param mixed $identificador
-     * @return int
-     */
-    public function getTipoIdentificador(mixed $identificador): int
-    {
-        return is_numeric($identificador)
-            ? self::TIPO_IDENTIFICADO['id']
-            : self::TIPO_IDENTIFICADO['cpf_cnpj'];
-    }
-
-    /**
-     * Retorna todos os contatos
+     * Retorna todos os depósitos
      *
      * @return array
      * @throws InvalidEndpointException
@@ -63,7 +38,7 @@ class ContatoResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Inserir um novo contato
+     * Insere um novo depósito
      *
      * @param array $payload
      * @return object
@@ -78,14 +53,14 @@ class ContatoResource extends AbstractResource implements ResourceInterface
             array(
                 'xml' => $this->payloadToXML(
                     $payload,
-                    'contato'
+                    'deposito'
                 )
             )
         );
     }
 
     /**
-     * Atualiza um contato
+     * Atualiza um novo depósito
      *
      * @param array $payload
      * @return object
@@ -100,14 +75,14 @@ class ContatoResource extends AbstractResource implements ResourceInterface
             array(
                 'xml' => $this->payloadToXML(
                     $payload,
-                    'contato'
+                    'deposito'
                 )
             )
         );
     }
 
     /**
-     * [INDISPONÍVEL]
+     * Deleta um depósito
      *
      * @return mixed
      * @throws InvalidEndpointException

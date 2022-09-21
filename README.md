@@ -54,6 +54,11 @@
     - [X] UPDATE
     - [X] FETCH
     - [X] FETCH ALL
+- [X] Depósito
+  - [X] INSERT
+  - [X] UPDATE
+  - [X] FETCH
+  - [X] FETCH ALL
 
 - [X] Refatorar os endpoints nas rotas por causa da abstracao do Id da Loja no Bling::client()
 - [X] Fazer a busca de vinculos de loja montarem a query com parametro loja

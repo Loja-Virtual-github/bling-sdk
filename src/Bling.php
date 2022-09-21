@@ -22,7 +22,8 @@ final class Bling
         'pedido',
         'produto',
         'produto_loja',
-        'situacao'
+        'situacao',
+        'deposito'
     ];
 
     /**
