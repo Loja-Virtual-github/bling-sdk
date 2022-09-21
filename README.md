@@ -31,11 +31,11 @@
     -  [ ] FETCH
     -  [ ] FETCH ALL
 
--  [ ] Implementar CRUD de pedido
-    -  [ ] INSERT
-    -  [ ] UPDATE
-    -  [ ] FETCH
-    -  [ ] FETCH ALL
+-  [X] Implementar CRUD de pedido
+    -  [X] INSERT
+    -  [X] UPDATE
+    -  [X] FETCH
+    -  [X] FETCH ALL
 
 - [X] Implementar CRUD de produto
     - [X] INSERT
