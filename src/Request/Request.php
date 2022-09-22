@@ -6,14 +6,12 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Bling;
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidXmlException;
 
 class Request
 {
     private static ?Request $instance = null;
     private ClientInterface $http_client;
-    private static $payload_format = [
+    private static array $payload_format = [
         'POST' => 'form_params',
         'PUT' => 'form_params',
         'GET' => 'query'
@@ -63,7 +61,7 @@ class Request
     /**
      * Efetua uma request
      *
-     * @param string $method
+     * @param HttpMethods $method
      * @param string $endpoint
      * @param array $options
      * @return ResponseHandler

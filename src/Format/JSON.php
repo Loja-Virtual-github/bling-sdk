@@ -21,13 +21,13 @@ class JSON implements FormatInterface
     /**
      * Converte uma string json em objeto
      *
-     * @param string $json
+     * @param string $data
      * @return object
      * @throws InvalidJsonException
      */
-    public function from(string $json, $debug = false): object
+    public function from(string $data): object
     {
-        $data = json_decode($json);
+        $data = json_decode($data);
 
         if (!empty(json_last_error())) {
             throw new InvalidJsonException(json_last_error_msg());

@@ -2,11 +2,9 @@
 
 namespace LojaVirtual\Bling\Request;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
-use LojaVirtual\Bling\Exceptions\BlingException;
-use LojaVirtual\Bling\Exceptions\BlingResourceException;
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Exceptions\InvalidXmlException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Format\FormatFactory;
 
 class ResponseHandler
@@ -34,10 +32,10 @@ class ResponseHandler
     /**
      * Retorna uma nova instância do response handler
      *
-     * @param \Exception $exception
+     * @param Exception $exception
      * @return ResponseHandler
      */
-    public static function failure(\Exception $exception): ResponseHandler
+    public static function failure(Exception $exception): ResponseHandler
     {
         return new ResponseHandler($exception->getResponse());
     }
@@ -45,13 +43,13 @@ class ResponseHandler
     /**
      * Retorna o conteúdo da resposta
      *
-     * @return mixed
+     * @return object
+     * @throws InvalidResponseFormatException
      */
-    public function getBody($debug = false): mixed
+    public function getBody(): object
     {
-        $formater = FormatFactory::factory($this->getContentType());
-        $body = $formater->from($this->bodyContent, $debug);
-        return $body;
+        $formatter = FormatFactory::factory($this->getContentType());
+        return $formatter->from($this->bodyContent);
     }
 
     /**

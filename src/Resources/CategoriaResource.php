@@ -2,8 +2,10 @@
 
 namespace LojaVirtual\Bling\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Request\HttpMethods;
 use LojaVirtual\Bling\Routes\AvailableRoutes;
 
@@ -13,7 +15,8 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
      * Retorna uma categoria específica
      *
      * @return mixed
-     * @throws InvalidResourceException
+     * @throws InvalidEndpointException
+     * @throws GuzzleException
      */
     public function fetch(): object
     {
@@ -27,7 +30,8 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
      * Retorna todas as categorias
      *
      * @return array
-     * @throws InvalidResourceException
+     * @throws GuzzleException
+     * @throws InvalidEndpointException
      */
     public function fetchAll(): array
     {
@@ -42,7 +46,9 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return mixed
-     * @throws InvalidResourceException
+     * @throws GuzzleException
+     * @throws InvalidEndpointException
+     * @throws InvalidResponseFormatException
      */
     public function insert(array $payload): object
     {
@@ -63,7 +69,9 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return object
-     * @throws InvalidResourceException
+     * @throws GuzzleException
+     * @throws InvalidEndpointException
+     * @throws InvalidResponseFormatException
      */
     public function update(array $payload): object
     {

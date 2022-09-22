@@ -2,7 +2,9 @@
 
 namespace LojaVirtual\Bling\Exceptions;
 
-class InvalidResourceException extends \Exception
+use Exception;
+
+class InvalidResourceException extends Exception
 {
 
 }

@@ -6,11 +6,6 @@ use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 
 class FormatFactory
 {
-    private const AVAILABLE_FORMATS = [
-        'JSON',
-        'XML'
-    ];
-
     /**
      * Retorna o formatador baseado no content-type da resposta
      *

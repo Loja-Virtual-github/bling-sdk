@@ -2,7 +2,9 @@
 
 namespace LojaVirtual\Bling\Exceptions;
 
-class InvalidEndpointException extends \Exception
+use Exception;
+
+class InvalidEndpointException extends Exception
 {
 
 }

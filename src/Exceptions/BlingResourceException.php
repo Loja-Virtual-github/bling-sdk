@@ -2,7 +2,10 @@
 
 namespace LojaVirtual\Bling\Exceptions;
 
-class BlingResourceException extends \Exception
+use Exception;
+use Throwable;
+
+class BlingResourceException extends Exception
 {
     public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {

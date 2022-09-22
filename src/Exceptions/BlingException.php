@@ -2,7 +2,9 @@
 
 namespace LojaVirtual\Bling\Exceptions;
 
-class BlingException extends \Exception
+use Exception;
+
+class BlingException extends Exception
 {
 
 }

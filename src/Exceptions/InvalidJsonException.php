@@ -2,7 +2,9 @@
 
 namespace LojaVirtual\Bling\Exceptions;
 
-class InvalidJsonException extends \Exception
+use Exception;
+
+class InvalidJsonException extends Exception
 {
 
 }

@@ -2,7 +2,9 @@
 
 namespace LojaVirtual\Bling\Exceptions;
 
-class InvalidResponseFormatException extends \Exception
+use Exception;
+
+class InvalidResponseFormatException extends Exception
 {
 
 }

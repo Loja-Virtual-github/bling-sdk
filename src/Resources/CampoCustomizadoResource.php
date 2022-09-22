@@ -2,21 +2,19 @@
 
 namespace LojaVirtual\Bling\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidResourceException;
 use LojaVirtual\Bling\Request\HttpMethods;
 use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class CampoCustomizadoResource extends AbstractResource implements ResourceInterface
 {
-    public const PRODUTOS = 'Produtos';
-    public const CONTATOS = 'Contatos';
-
     /**
      * Retorna os campos customizados de um módulo
      *
      * @return mixed
-     * @throws InvalidResourceException
+     * @throws InvalidEndpointException
+     * @throws GuzzleException
      */
     public function fetch(): object
     {

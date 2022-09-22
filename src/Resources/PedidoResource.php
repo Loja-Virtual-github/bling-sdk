@@ -2,6 +2,7 @@
 
 namespace LojaVirtual\Bling\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Request\HttpMethods;
@@ -14,6 +15,7 @@ class PedidoResource extends AbstractResource implements ResourceInterface
      *
      * @return object
      * @throws InvalidEndpointException
+     * @throws GuzzleException
      */
     public function fetch(): object
     {
@@ -27,6 +29,7 @@ class PedidoResource extends AbstractResource implements ResourceInterface
      * Retorna todos os pedidos
      *
      * @return array
+     * @throws GuzzleException
      * @throws InvalidEndpointException
      */
     public function fetchAll(): array
@@ -42,6 +45,7 @@ class PedidoResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return object
+     * @throws GuzzleException
      * @throws InvalidEndpointException
      * @throws InvalidResponseFormatException
      */
@@ -61,6 +65,7 @@ class PedidoResource extends AbstractResource implements ResourceInterface
      *
      * @param array $payload
      * @return object
+     * @throws GuzzleException
      * @throws InvalidEndpointException
      * @throws InvalidResponseFormatException
      */

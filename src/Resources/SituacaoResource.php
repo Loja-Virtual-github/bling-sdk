@@ -2,6 +2,7 @@
 
 namespace LojaVirtual\Bling\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Request\HttpMethods;
 use LojaVirtual\Bling\Routes\AvailableRoutes;
@@ -24,6 +25,7 @@ class SituacaoResource extends AbstractResource implements ResourceInterface
      *
      * @return array
      * @throws InvalidEndpointException
+     * @throws GuzzleException
      */
     public function fetchAll(): array
     {
@@ -48,6 +50,7 @@ class SituacaoResource extends AbstractResource implements ResourceInterface
     /**
      * [INDISPONÍVEL]
      *
+     * @param array $payload
      * @return object
      * @throws InvalidEndpointException
      */

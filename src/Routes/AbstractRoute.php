@@ -12,17 +12,6 @@ abstract class AbstractRoute
     }
 
     /**
-     * Seta as opções do endpoint
-     *
-     * @param array $options
-     * @return void
-     */
-    public function setOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
-    /**
      * Retorna as opções dos endpoints
      *
      * @return array
