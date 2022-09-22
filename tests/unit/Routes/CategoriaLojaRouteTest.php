@@ -9,15 +9,14 @@ use LojaVirtual\Bling\Routes\RouteFactory;
 use LojaVirtual\Bling\Routes\RouteInterface;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
-class CategoriaLojaRouteTest extends BaseTesting
+class CategoriaLojaRouteTest extends AbstractTestRoute
 {
     private RouteInterface $route;
-    private Bling $bling;
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
         $this->route = RouteFactory::factory('CategoriaLojaResource', [123]);
-        $this->bling = Bling::client('token', 123123);
+        $bling = Bling::client('token', 123123);
         parent::__construct($name, $data, $dataName);
     }
 

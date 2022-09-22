@@ -8,7 +8,7 @@ use LojaVirtual\Bling\Routes\RouteFactory;
 use LojaVirtual\Bling\Routes\RouteInterface;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
-class NotaFiscalRouteTest extends BaseTesting
+class NotaFiscalRouteTest extends AbstractTestRoute
 {
     private RouteInterface $route;
 

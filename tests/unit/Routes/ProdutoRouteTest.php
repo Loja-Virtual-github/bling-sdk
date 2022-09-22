@@ -7,7 +7,7 @@ use LojaVirtual\Bling\Routes\RouteFactory;
 use LojaVirtual\Bling\Routes\RouteInterface;
 use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
-class ProdutoRouteTest extends BaseTesting
+class ProdutoRouteTest extends AbstractTestRoute
 {
     private RouteInterface $route;
 

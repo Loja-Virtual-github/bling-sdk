@@ -3,12 +3,10 @@
 namespace LojaVirtual\Bling\Tests\unit\Routes;
 
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Routes\CampoCustomizadoRoute;
 use LojaVirtual\Bling\Routes\RouteFactory;
 use LojaVirtual\Bling\Routes\RouteInterface;
-use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
-class CampoCustomizadoRouteTest extends BaseTesting
+class CampoCustomizadoRouteTest extends AbstractTestRoute
 {
     private RouteInterface $route;
 
