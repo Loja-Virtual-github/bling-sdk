@@ -1,8 +1,8 @@
 <?php
 
-namespace LojaVirtual\Bling\Resources\Response;
+namespace PabloSanches\Bling\Resources\Response;
 
-use LojaVirtual\Bling\Request\ResponseHandler;
+use PabloSanches\Bling\Request\ResponseHandler;
 
 class ProdutoLojaResponse extends AbstractResourceResponse implements ResourceResponseInterface
 {

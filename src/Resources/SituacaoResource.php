@@ -1,11 +1,11 @@
 <?php
 
-namespace LojaVirtual\Bling\Resources;
+namespace PabloSanches\Bling\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Request\HttpMethods;
-use LojaVirtual\Bling\Routes\AvailableRoutes;
+use PabloSanches\Bling\Exceptions\InvalidEndpointException;
+use PabloSanches\Bling\Request\HttpMethods;
+use PabloSanches\Bling\Routes\AvailableRoutes;
 
 class SituacaoResource extends AbstractResource implements ResourceInterface
 {

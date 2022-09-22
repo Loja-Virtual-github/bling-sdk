@@ -1,11 +1,11 @@
 <?php
 
-namespace LojaVirtual\Bling\Tests\unit\Routes;
+namespace PabloSanches\Bling\Tests\unit\Routes;
 
-use LojaVirtual\Bling\Routes\ProdutoRoute;
-use LojaVirtual\Bling\Routes\RouteFactory;
-use LojaVirtual\Bling\Routes\RouteInterface;
-use LojaVirtual\Bling\Tests\unit\BaseTesting;
+use PabloSanches\Bling\Routes\ProdutoRoute;
+use PabloSanches\Bling\Routes\RouteFactory;
+use PabloSanches\Bling\Routes\RouteInterface;
+use PabloSanches\Bling\Tests\unit\BaseTesting;
 
 class ProdutoRouteTest extends AbstractTestRoute
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace LojaVirtual\Bling\Tests\unit\Resources;
+namespace PabloSanches\Bling\Tests\unit\Resources;
 
-use LojaVirtual\Bling\Bling;
-use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Resources\CampoCustomizadoResource;
-use LojaVirtual\Bling\Tests\unit\BaseTesting;
+use PabloSanches\Bling\Bling;
+use PabloSanches\Bling\Exceptions\InvalidEndpointException;
+use PabloSanches\Bling\Resources\CampoCustomizadoResource;
+use PabloSanches\Bling\Tests\unit\BaseTesting;
 
 class CampoCustomizadoTest extends BaseTesting
 {

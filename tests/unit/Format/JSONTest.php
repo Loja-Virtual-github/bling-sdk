@@ -1,12 +1,12 @@
 <?php
 
-namespace LojaVirtual\Bling\Tests\unit\Format;
+namespace PabloSanches\Bling\Tests\unit\Format;
 
-use LojaVirtual\Bling\Exceptions\InvalidJsonException;
-use LojaVirtual\Bling\Format\FormatFactory;
-use LojaVirtual\Bling\Format\FormatInterface;
-use LojaVirtual\Bling\Format\JSON;
-use LojaVirtual\Bling\Tests\unit\BaseTesting;
+use PabloSanches\Bling\Exceptions\InvalidJsonException;
+use PabloSanches\Bling\Format\FormatFactory;
+use PabloSanches\Bling\Format\FormatInterface;
+use PabloSanches\Bling\Format\JSON;
+use PabloSanches\Bling\Tests\unit\BaseTesting;
 
 class JSONTest extends BaseTesting
 {

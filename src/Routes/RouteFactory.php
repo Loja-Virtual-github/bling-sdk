@@ -1,9 +1,9 @@
 <?php
 
-namespace LojaVirtual\Bling\Routes;
+namespace PabloSanches\Bling\Routes;
 
-use LojaVirtual\Bling\Exceptions\InvalidResourceException;
-use LojaVirtual\Bling\Helper;
+use PabloSanches\Bling\Exceptions\InvalidResourceException;
+use PabloSanches\Bling\Helper;
 
 abstract class RouteFactory
 {

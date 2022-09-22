@@ -1,6 +1,6 @@
 <?php
 
-namespace LojaVirtual\Bling\Resources;
+namespace PabloSanches\Bling\Resources;
 
 interface ResourceInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace LojaVirtual\Bling\Tests\unit\Routes;
+namespace PabloSanches\Bling\Tests\unit\Routes;
 
-use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Routes\RouteFactory;
-use LojaVirtual\Bling\Routes\RouteInterface;
+use PabloSanches\Bling\Exceptions\InvalidEndpointException;
+use PabloSanches\Bling\Routes\RouteFactory;
+use PabloSanches\Bling\Routes\RouteInterface;
 
 class CategoriaRouteTest extends AbstractTestRoute
 {

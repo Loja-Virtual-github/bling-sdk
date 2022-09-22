@@ -1,12 +1,12 @@
 <?php
 
-namespace LojaVirtual\Bling\Resources;
+namespace PabloSanches\Bling\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
-use LojaVirtual\Bling\Request\HttpMethods;
-use LojaVirtual\Bling\Routes\AvailableRoutes;
+use PabloSanches\Bling\Exceptions\InvalidEndpointException;
+use PabloSanches\Bling\Exceptions\InvalidResponseFormatException;
+use PabloSanches\Bling\Request\HttpMethods;
+use PabloSanches\Bling\Routes\AvailableRoutes;
 
 class ContatoResource extends AbstractResource implements ResourceInterface
 {

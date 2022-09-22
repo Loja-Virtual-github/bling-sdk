@@ -1,11 +1,11 @@
 <?php
 
-namespace LojaVirtual\Bling\Request;
+namespace PabloSanches\Bling\Request;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Bling;
+use PabloSanches\Bling\Bling;
 
 class Request
 {

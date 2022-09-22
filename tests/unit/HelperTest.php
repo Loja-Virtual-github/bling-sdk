@@ -1,12 +1,12 @@
 <?php
 
-namespace LojaVirtual\Bling\Tests\unit;
+namespace PabloSanches\Bling\Tests\unit;
 
-use LojaVirtual\Bling\Exceptions\InvalidResourceException;
-use LojaVirtual\Bling\Helper;
-use LojaVirtual\Bling\Resources\CategoriaResource;
-use LojaVirtual\Bling\Resources\Response\CategoriaResponse;
-use LojaVirtual\Bling\Routes\CategoriaRoute;
+use PabloSanches\Bling\Exceptions\InvalidResourceException;
+use PabloSanches\Bling\Helper;
+use PabloSanches\Bling\Resources\CategoriaResource;
+use PabloSanches\Bling\Resources\Response\CategoriaResponse;
+use PabloSanches\Bling\Routes\CategoriaRoute;
 
 class HelperTest extends BaseTesting
 {

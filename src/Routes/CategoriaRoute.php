@@ -1,8 +1,8 @@
 <?php
 
-namespace LojaVirtual\Bling\Routes;
+namespace PabloSanches\Bling\Routes;
 
-use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+use PabloSanches\Bling\Exceptions\InvalidEndpointException;
 
 class CategoriaRoute extends AbstractRoute implements RouteInterface
 {

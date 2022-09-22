@@ -1,20 +1,20 @@
 <?php
 
-namespace LojaVirtual\Bling\Resources;
+namespace PabloSanches\Bling\Resources;
 
 
 use GuzzleHttp\Exception\GuzzleException;
-use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
-use LojaVirtual\Bling\Exceptions\InvalidResourceException;
-use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
-use LojaVirtual\Bling\Format\FormatFactory;
-use LojaVirtual\Bling\Request\HttpMethods;
-use LojaVirtual\Bling\Request\Request;
-use LojaVirtual\Bling\Resources\Response\ResourceResponseFactory;
-use LojaVirtual\Bling\Resources\Response\ResourceResponseInterface;
-use LojaVirtual\Bling\Routes\AvailableRoutes;
-use LojaVirtual\Bling\Routes\RouteFactory;
-use LojaVirtual\Bling\Routes\RouteInterface;
+use PabloSanches\Bling\Exceptions\InvalidEndpointException;
+use PabloSanches\Bling\Exceptions\InvalidResourceException;
+use PabloSanches\Bling\Exceptions\InvalidResponseFormatException;
+use PabloSanches\Bling\Format\FormatFactory;
+use PabloSanches\Bling\Request\HttpMethods;
+use PabloSanches\Bling\Request\Request;
+use PabloSanches\Bling\Resources\Response\ResourceResponseFactory;
+use PabloSanches\Bling\Resources\Response\ResourceResponseInterface;
+use PabloSanches\Bling\Routes\AvailableRoutes;
+use PabloSanches\Bling\Routes\RouteFactory;
+use PabloSanches\Bling\Routes\RouteInterface;
 
 abstract class AbstractResource
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace LojaVirtual\Bling\Exceptions;
+namespace PabloSanches\Bling\Exceptions;
 
 use Exception;
 use Throwable;

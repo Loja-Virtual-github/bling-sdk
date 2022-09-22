@@ -1,8 +1,8 @@
 <?php
 
-namespace LojaVirtual\Bling;
+namespace PabloSanches\Bling;
 
-use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use PabloSanches\Bling\Exceptions\InvalidResourceException;
 
 final class Bling
 {

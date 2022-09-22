@@ -65,7 +65,6 @@
 - [ ] Fazer o fetchAll já retornar os dados paginados com recursão (https://ajuda.bling.com.br/hc/pt-br/articles/360046302394-Limites)
 - [X] Tratar para que as requests tenham um sleep de 1 segundos depois da execução
 - [X] Fazer a instância do Guzzle ser passada por injeção de dependência para refatorarmos os testes
-- [ ] Fazer os testes com stubs que verificam as chamadas de métodos
 - [X] Mover os testes de resources para um suíte de teste de integração
 - [X] Criar abstração para tratamento de resposta por resource
 - [X] Alterar os resources já implementados para usar a abstração de respostas de resources

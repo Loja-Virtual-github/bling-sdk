@@ -1,6 +1,6 @@
 <?php
 
-namespace LojaVirtual\Bling\Routes;
+namespace PabloSanches\Bling\Routes;
 
 abstract class AbstractRoute
 {

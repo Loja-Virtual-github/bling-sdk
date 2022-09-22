@@ -1,6 +1,6 @@
 <?php
 
-namespace LojaVirtual\Bling\Format;
+namespace PabloSanches\Bling\Format;
 
 interface FormatInterface
 {
