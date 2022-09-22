@@ -27,7 +27,7 @@ Para instalar a SDK você pode usar o comando
 `composer require pablosanches/bling-sdk`
 
 ou você pode adicionar diretamente no seu composer.json
-```json
+```
 require": {  
   "pablosanches/bling-sdk": "*"
 },
