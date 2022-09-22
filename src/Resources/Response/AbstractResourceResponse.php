@@ -55,11 +55,10 @@ abstract class AbstractResourceResponse
 
     protected function checkForErrors(mixed $body): void
     {
-        if (!property_exists($body, 'retorno')) {
-            exit('TRATAR AQUI');
+        if (property_exists($body, 'retorno')) {
+            $body = $body->retorno;
         }
 
-        $body = $body->retorno;
         if (property_exists($body, 'erros')) {
             $this->parseErros($body->erros);
         }

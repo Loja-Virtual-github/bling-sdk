@@ -41,24 +41,94 @@ abstract class AbstractResource
      * @param HttpMethods $method
      * @param string $endpoint
      * @param array $options
+     * @param int|null $page
      * @return mixed
      * @throws GuzzleException
+     * @throws InvalidResponseFormatException
      */
     public function request(
         HttpMethods $method,
         string $endpoint,
-        array $options = []
+        array $options = [],
+        ?int $page = 1
     ): mixed {
+
+        if ($method === HttpMethods::GET) {
+            return $this->getPaginatedRequest(
+                $method,
+                $endpoint,
+                $options,
+                $page
+            );
+        }
 
         $response = $this
             ->request
             ->sendRequest(
                 $method,
                 $endpoint,
-                $options
+                $options,
+                $page
             );
 
         return $this->resourceResponseHandler->parse($response);
+    }
+
+    /**
+     * Retorna os registros paginados
+     *
+     * @param HttpMethods $method
+     * @param string $endpoint
+     * @param array $options
+     * @param int|null $page
+     * @return array
+     * @throws GuzzleException
+     * @throws InvalidResponseFormatException
+     */
+    private function getPaginatedRequest(
+        HttpMethods $method,
+        string $endpoint,
+        array $options = [],
+        ?int $page = 1
+    ): array {
+
+        $mergedResponses = [];
+
+        do {
+            $response = $this
+                ->request
+                ->sendRequest(
+                    $method,
+                    $endpoint,
+                    $options,
+                    $page
+                );
+
+            $codError = $response->getCodError();
+            if ($codError !== 14) {
+                $mergedResponses[] = $response;
+                $page++;
+            }
+        } while ($codError !== 14);
+
+        return $this->parsePaginatedResponses($mergedResponses);
+    }
+
+    /**
+     * Executa o handler individual de respostas e retorna um array com todas as páginas
+     *
+     * @param array $mergedResponses
+     * @return array
+     */
+    private function parsePaginatedResponses(array $mergedResponses): array
+    {
+        $merged = array();
+
+        foreach ($mergedResponses as $response) {
+            $merged = array_merge($merged, $this->resourceResponseHandler->parse($response));
+        }
+
+        return $merged;
     }
 
     /**

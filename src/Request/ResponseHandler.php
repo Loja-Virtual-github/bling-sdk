@@ -70,6 +70,44 @@ class ResponseHandler
     }
 
     /**
+     * Retorna o código de erro quando existir
+     *
+     * @return false|int
+     * @throws InvalidResponseFormatException
+     */
+    public function getCodError(): false|int
+    {
+        $body = $this->getBody();
+
+        if (is_object($body) && property_exists($body, 'retorno')) {
+            $body = $body->retorno;
+        }
+
+        if (property_exists($body, 'erros')) {
+            $body = $body->erros;
+            if (is_array($body)) {
+                foreach ($body as $item) {
+                    if (is_object($item) && property_exists($item, 'erro')) {
+                        $body = $item->erro;
+                        if (property_exists($body, 'cod')) {
+                            return $body->cod;
+                        }
+                    }
+                }
+            } else {
+                if (is_object($body) && property_exists($body, 'erro')) {
+                    if (property_exists($body, 'cod')) {
+                        return $body->cod;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
      * Verifica se a request teve sucesso
      *
      * @return bool

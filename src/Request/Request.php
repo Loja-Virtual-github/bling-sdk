@@ -70,14 +70,21 @@ class Request
     public function sendRequest(
         HttpMethods $method,
         string $endpoint,
-        array $options = []
+        array $options = [],
+        ?int $page = 1
     ): ResponseHandler {
         try {
+            $endpoint = $this->buildEndpoint(
+                $endpoint,
+                Bling::getFormat(),
+                $page
+            );
+
             $response = $this
                 ->http_client
                 ->request(
                     $method->value,
-                    sprintf("%s/json/", $endpoint),
+                    $endpoint,
                     $this->preparePayload($method->value, $options)
                 );
             sleep(1);
@@ -85,5 +92,25 @@ class Request
         } catch (ClientException $e) {
             return ResponseHandler::failure($e);
         }
+    }
+
+    /**
+     * Retorna o endpoint
+     *
+     * @param string $baseEndpoint
+     * @param string $format
+     * @param int $page
+     * @return string
+     */
+    private function buildEndpoint(
+        string $baseEndpoint,
+        string $format,
+        int $page
+    ): string {
+        if ($page === 1) {
+            return sprintf("%s/%s/", $baseEndpoint, $format);
+        }
+
+        return sprintf("%s/page=%s/%s/", $baseEndpoint, $page, $format);
     }
 }

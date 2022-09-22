@@ -47,7 +47,7 @@ class CampoCustomizadoTest extends BaseTesting
     {
         $campoCustomizado = $this
             ->bling
-            ->campo_customizado(CampoCustomizadoResource::PRODUTOS)
+            ->campo_customizado('Produtos')
             ->fetch();
 
         self::assertEquals('teste', $campoCustomizado->alias);
