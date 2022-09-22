@@ -1,8 +1,8 @@
 <?php
 
-namespace PabloSanches\Bling;
+namespace LojaVirtual\Bling;
 
-use PabloSanches\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
 
 abstract class Helper
 {

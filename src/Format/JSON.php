@@ -1,8 +1,8 @@
 <?php
 
-namespace PabloSanches\Bling\Format;
+namespace LojaVirtual\Bling\Format;
 
-use PabloSanches\Bling\Exceptions\InvalidJsonException;
+use LojaVirtual\Bling\Exceptions\InvalidJsonException;
 
 class JSON implements FormatInterface
 {

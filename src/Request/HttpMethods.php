@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloSanches\Bling\Request;
+namespace LojaVirtual\Bling\Request;
 
 enum HttpMethods: string
 {

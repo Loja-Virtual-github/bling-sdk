@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloSanches\Bling\Exceptions;
+namespace LojaVirtual\Bling\Exceptions;
 
 use Exception;
 

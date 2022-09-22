@@ -1,10 +1,10 @@
 <?php
 
-namespace PabloSanches\Bling\Tests\unit\Resources;
+namespace LojaVirtual\Bling\Tests\unit\Resources;
 
-use PabloSanches\Bling\Bling;
-use PabloSanches\Bling\Exceptions\InvalidEndpointException;
-use PabloSanches\Bling\Tests\unit\BaseTesting;
+use LojaVirtual\Bling\Bling;
+use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class ProdutoLojaTest extends BaseTesting
 {
@@ -21,7 +21,7 @@ class ProdutoLojaTest extends BaseTesting
     private function getPayload(): array
     {
         return json_decode('{
-                  "idPabloSanches": 204159108,
+                  "idLojaVirtual": 204159108,
                   "preco": {
                     "preco": 21,
                     "precoPromocional": 19

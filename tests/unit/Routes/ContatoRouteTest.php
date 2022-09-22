@@ -1,12 +1,12 @@
 <?php
 
-namespace PabloSanches\Bling\Tests\unit\Routes;
+namespace LojaVirtual\Bling\Tests\unit\Routes;
 
-use PabloSanches\Bling\Exceptions\InvalidEndpointException;
-use PabloSanches\Bling\Routes\ContatoRoute;
-use PabloSanches\Bling\Routes\RouteFactory;
-use PabloSanches\Bling\Routes\RouteInterface;
-use PabloSanches\Bling\Tests\unit\BaseTesting;
+use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+use LojaVirtual\Bling\Routes\ContatoRoute;
+use LojaVirtual\Bling\Routes\RouteFactory;
+use LojaVirtual\Bling\Routes\RouteInterface;
+use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class ContatoRouteTest extends AbstractTestRoute
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloSanches\Bling\Tests\unit;
+namespace LojaVirtual\Bling\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace PabloSanches\Bling\Routes;
+namespace LojaVirtual\Bling\Routes;
 
-use PabloSanches\Bling\Exceptions\InvalidEndpointException;
+use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 
 class SituacaoRoute extends AbstractRoute implements RouteInterface
 {

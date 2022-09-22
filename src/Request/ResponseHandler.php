@@ -1,11 +1,11 @@
 <?php
 
-namespace PabloSanches\Bling\Request;
+namespace LojaVirtual\Bling\Request;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
-use PabloSanches\Bling\Exceptions\InvalidResponseFormatException;
-use PabloSanches\Bling\Format\FormatFactory;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
+use LojaVirtual\Bling\Format\FormatFactory;
 
 class ResponseHandler
 {

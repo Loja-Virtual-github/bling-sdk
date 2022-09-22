@@ -1,9 +1,9 @@
 <?php
 
-namespace PabloSanches\Bling\Tests\unit\Routes;
+namespace LojaVirtual\Bling\Tests\unit\Routes;
 
-use PabloSanches\Bling\Bling;
-use PabloSanches\Bling\Tests\unit\BaseTesting;
+use LojaVirtual\Bling\Bling;
+use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class AbstractTestRoute extends BaseTesting
 {

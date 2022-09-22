@@ -1,8 +1,8 @@
 <?php
 
-namespace PabloSanches\Bling\Format;
+namespace LojaVirtual\Bling\Format;
 
-use PabloSanches\Bling\Exceptions\InvalidResponseFormatException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 
 class FormatFactory
 {

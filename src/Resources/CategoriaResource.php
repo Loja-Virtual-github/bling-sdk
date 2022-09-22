@@ -1,13 +1,13 @@
 <?php
 
-namespace PabloSanches\Bling\Resources;
+namespace LojaVirtual\Bling\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use PabloSanches\Bling\Exceptions\InvalidEndpointException;
-use PabloSanches\Bling\Exceptions\InvalidResourceException;
-use PabloSanches\Bling\Exceptions\InvalidResponseFormatException;
-use PabloSanches\Bling\Request\HttpMethods;
-use PabloSanches\Bling\Routes\AvailableRoutes;
+use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class CategoriaResource extends AbstractResource implements ResourceInterface
 {

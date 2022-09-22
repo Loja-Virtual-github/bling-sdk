@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloSanches\Bling\Routes;
+namespace LojaVirtual\Bling\Routes;
 
 enum AvailableRoutes: string
 {

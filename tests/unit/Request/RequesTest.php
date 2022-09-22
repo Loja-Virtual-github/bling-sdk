@@ -1,11 +1,11 @@
 <?php
 
-namespace PabloSanches\Bling\Tests\unit\Request;
+namespace LojaVirtual\Bling\Tests\unit\Request;
 
-use PabloSanches\Bling\Bling;
-use PabloSanches\Bling\Request\Request;
-use PabloSanches\Bling\Request\RequestFactory;
-use PabloSanches\Bling\Tests\unit\BaseTesting;
+use LojaVirtual\Bling\Bling;
+use LojaVirtual\Bling\Request\Request;
+use LojaVirtual\Bling\Request\RequestFactory;
+use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class RequesTest extends BaseTesting
 {

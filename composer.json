@@ -1,16 +1,16 @@
 {
-    "name": "pablosanches/bling-sdk",
+    "name": "lojavirtual/bling-sdk",
     "description": "SDK não oficial de integração com o Bling",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "PabloSanches\\Bling\\": "src/"
+            "LojaVirtual\\Bling\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PabloSanches\\Bling\\Tests\\": "tests/"
+            "LojaVirtual\\Bling\\Tests\\": "tests/"
         }
     },
     "authors": [

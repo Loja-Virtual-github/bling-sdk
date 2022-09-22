@@ -1,9 +1,9 @@
 <?php
 
-namespace PabloSanches\Bling\Resources\Response;
+namespace LojaVirtual\Bling\Resources\Response;
 
-use PabloSanches\Bling\Exceptions\InvalidResourceException;
-use PabloSanches\Bling\Helper;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Helper;
 
 abstract class ResourceResponseFactory
 {

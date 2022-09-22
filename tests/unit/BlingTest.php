@@ -1,10 +1,10 @@
 <?php
 
-namespace PabloSanches\Bling\Tests\unit;
+namespace LojaVirtual\Bling\Tests\unit;
 
-use PabloSanches\Bling\Bling;
-use PabloSanches\Bling\Exceptions\InvalidResourceException;
-use PabloSanches\Bling\Resources\CategoriaResource;
+use LojaVirtual\Bling\Bling;
+use LojaVirtual\Bling\Exceptions\InvalidResourceException;
+use LojaVirtual\Bling\Resources\CategoriaResource;
 
 class BlingTest extends BaseTesting
 {

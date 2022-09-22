@@ -1,6 +1,6 @@
 <?php
 
-namespace PabloSanches\Bling\Routes;
+namespace LojaVirtual\Bling\Routes;
 
 class ProdutoRoute extends AbstractRoute implements RouteInterface
 {

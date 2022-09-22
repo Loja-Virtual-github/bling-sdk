@@ -1,10 +1,10 @@
 <?php
 
-namespace PabloSanches\Bling\Request;
+namespace LojaVirtual\Bling\Request;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use PabloSanches\Bling\Bling;
+use LojaVirtual\Bling\Bling;
 
 class RequestFactory
 {
@@ -17,7 +17,7 @@ class RequestFactory
                 'headers' => [
                     'Accept' => 'application/json',
                     'Accept-Encoding' => 'gzip',
-                    'User-Agent' => 'Integração PabloSanches.com.br | Contato: Pablo Sanches <sanches.webmaster@gmail.com>',
+                    'User-Agent' => 'Integração LojaVirtual.com.br | Contato: Pablo Sanches <sanches.webmaster@gmail.com>',
                     'RequestId' => uniqid()
                 ]
             ]);

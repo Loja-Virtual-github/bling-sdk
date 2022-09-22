@@ -24,12 +24,12 @@ Você pode acessar a documentação oficial do Bling neste [link](https://ajuda.
 
 Para instalar a SDK você pode usar o comando
 
-`composer require pablosanches/bling-sdk`
+`composer require lojavirtual/bling-sdk`
 
 ou você pode adicionar diretamente no seu composer.json
 ```
 require": {  
-  "pablosanches/bling-sdk": "*"
+  "lojavirtual/bling-sdk": "*"
 },
 ```
 
@@ -41,7 +41,7 @@ Para incluir a biblioteca em seu projeto, basta fazer o seguinte:
 <?php
 require('vendor/autoload.php');
 
-$bling = new PabloSanches\Bling::client('seu-token');
+$bling = new LojaVirtual\Bling::client('seu-token');
 ```
 
 Caso você queria fazer as integrações de multiloja do Bling, você pode inicializar a biblioteca da seguinte forma:
@@ -50,7 +50,7 @@ Caso você queria fazer as integrações de multiloja do Bling, você pode inici
 <?php
 require('vendor/autoload.php');
 
-$bling = new PabloSanches\Bling::client('seu-token', 'id-da-loja-fornecido-pelo-bling');
+$bling = new LojaVirtual\Bling::client('seu-token', 'id-da-loja-fornecido-pelo-bling');
 ```
 
 E então, você pode poderá utilizar o cliente para fazer requisições ao Pagar.me, como nos exemplos abaixo.
@@ -248,7 +248,7 @@ require('vendor/autoload.php');
 
 $token = 'seu-token';
 $idLojaVinculo = 123123;
-$bling = new PabloSanches\Bling::client($token, $idLojaVinculo);
+$bling = new LojaVirtual\Bling::client($token, $idLojaVinculo);
 ```
 
 #### Criando um novo vínculo de categorias
@@ -783,7 +783,7 @@ require('vendor/autoload.php');
 
 $token = 'seu-token';
 $idLojaVinculo = 123123;
-$bling = new PabloSanches\Bling::client($token, $idLojaVinculo);
+$bling = new LojaVirtual\Bling::client($token, $idLojaVinculo);
 ```
 
 #### Criando um novo vínculo de produto

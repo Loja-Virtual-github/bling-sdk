@@ -1,8 +1,8 @@
 <?php
 
-namespace PabloSanches\Bling\Format;
+namespace LojaVirtual\Bling\Format;
 
-use PabloSanches\Bling\Exceptions\InvalidXmlException;
+use LojaVirtual\Bling\Exceptions\InvalidXmlException;
 use Spatie\ArrayToXml\ArrayToXml;
 use Exception;
 

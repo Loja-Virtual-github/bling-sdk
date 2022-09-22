@@ -1,13 +1,13 @@
 <?php
 
-namespace PabloSanches\Bling\Resources;
+namespace LojaVirtual\Bling\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use PabloSanches\Bling\Bling;
-use PabloSanches\Bling\Exceptions\InvalidEndpointException;
-use PabloSanches\Bling\Exceptions\InvalidResponseFormatException;
-use PabloSanches\Bling\Request\HttpMethods;
-use PabloSanches\Bling\Routes\AvailableRoutes;
+use LojaVirtual\Bling\Bling;
+use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
+use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
+use LojaVirtual\Bling\Request\HttpMethods;
+use LojaVirtual\Bling\Routes\AvailableRoutes;
 
 class ProdutoLojaResource extends AbstractResource implements ResourceInterface
 {
@@ -51,8 +51,8 @@ class ProdutoLojaResource extends AbstractResource implements ResourceInterface
      */
     public function insert(array $payload): object
     {
-        if (empty($payload['idPabloSanches'])) {
-            $payload['idPabloSanches'] = Bling::$idLoja;
+        if (empty($payload['idLojaVirtual'])) {
+            $payload['idLojaVirtual'] = Bling::$idLoja;
         }
 
         return $this->request(
@@ -78,8 +78,8 @@ class ProdutoLojaResource extends AbstractResource implements ResourceInterface
      */
     public function update(array $payload): object
     {
-        if (empty($payload['idPabloSanches'])) {
-            $payload['idPabloSanches'] = Bling::$idLoja;
+        if (empty($payload['idLojaVirtual'])) {
+            $payload['idLojaVirtual'] = Bling::$idLoja;
         }
 
         return $this->request(
