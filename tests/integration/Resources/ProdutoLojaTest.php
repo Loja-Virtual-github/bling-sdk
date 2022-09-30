@@ -8,8 +8,8 @@ use LojaVirtual\Bling\Tests\unit\BaseTesting;
 
 class ProdutoLojaTest extends BaseTesting
 {
-    private string $token = '18cf793d1362cbe406b88e595e0067c676c12b4c720bccb69d7d25079b07c18bcf0d7260';
-    private int $idLoja = 204159108;
+    private string $token = 'c1610a54e2612543827cfa5277636e21b6da6e8ff19ff5a17b64aefafdd8474e382327a8';
+    private int $idLoja = 204195687;
     private Bling $bling;
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')

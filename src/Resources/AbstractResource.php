@@ -93,7 +93,6 @@ abstract class AbstractResource
     ): array {
 
         $mergedResponses = [];
-
         do {
             $response = $this
                 ->request
@@ -110,7 +109,6 @@ abstract class AbstractResource
                 $page++;
             }
         } while ($codError !== 14);
-
         return $this->parsePaginatedResponses($mergedResponses);
     }
 
@@ -125,7 +123,12 @@ abstract class AbstractResource
         $merged = array();
 
         foreach ($mergedResponses as $response) {
-            $merged = array_merge($merged, $this->resourceResponseHandler->parse($response));
+            $responseParsed = $this->resourceResponseHandler->parse($response);
+            if (is_array($responseParsed)) {
+                $merged = array_merge($merged, $responseParsed);
+            } else {
+                $merged[] = $responseParsed;
+            }
         }
 
         return $merged;

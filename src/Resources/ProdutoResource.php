@@ -3,6 +3,7 @@
 namespace LojaVirtual\Bling\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
+use LojaVirtual\Bling\Bling;
 use LojaVirtual\Bling\Exceptions\InvalidEndpointException;
 use LojaVirtual\Bling\Exceptions\InvalidResourceException;
 use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
@@ -32,12 +33,33 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
      * @return array
      * @throws GuzzleException
      * @throws InvalidEndpointException
+     * @throws InvalidResponseFormatException
      */
     public function fetchAll(): array
     {
-        return $this->request(
+        $response = $this->request(
             HttpMethods::GET,
             $this->getEndpoint(AvailableRoutes::FETCH_ALL)
+        );
+
+        if (!empty(Bling::$idLoja)) {
+            return $this->filterMultiLoja($response);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Retorna somente os produtos com vínculo
+     *
+     * @param array $response
+     * @return array
+     */
+    private function filterMultiLoja(array $response): array
+    {
+        return array_filter(
+            $response,
+            fn($produto) => property_exists($produto, 'produtoLoja') ? $produto : null
         );
     }
 
@@ -52,13 +74,24 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
      */
     public function insert(array $payload): object
     {
-        return $this->request(
+        $response = $this->request(
             HttpMethods::POST,
             $this->getEndpoint(AvailableRoutes::INSERT),
             array(
                 'xml' => $this->payloadToXML($payload, 'produto')
             )
         );
+
+        if (!empty(Bling::$idLoja)) {
+            $produtoLoja = new ProdutoLojaResource();
+            $produtoLojaResponse = $produtoLoja->insert(array(
+                'idCategoria' => $response->id,
+                'descricaoVinculo' => sprintf("LJVT_PROD_%s", $response->id),
+                'idVinculoLoja' => sprintf("LJVT_PROD_%s", $response->id),
+            ));
+        }
+
+        return $response;
     }
 
     /**

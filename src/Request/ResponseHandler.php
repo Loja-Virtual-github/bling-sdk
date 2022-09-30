@@ -4,6 +4,7 @@ namespace LojaVirtual\Bling\Request;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
+use LojaVirtual\Bling\Exceptions\BlingException;
 use LojaVirtual\Bling\Exceptions\InvalidResponseFormatException;
 use LojaVirtual\Bling\Format\FormatFactory;
 
@@ -90,15 +91,26 @@ class ResponseHandler
                     if (is_object($item) && property_exists($item, 'erro')) {
                         $body = $item->erro;
                         if (property_exists($body, 'cod')) {
+
+                            if ($body->cod !== 14) {
+                                throw new BlingException($body->msg);
+                            }
+
                             return $body->cod;
                         }
                     }
                 }
             } else {
                 if (is_object($body) && property_exists($body, 'erro')) {
+                    $body = $body->erro;
                     if (property_exists($body, 'cod')) {
+                        if ($body->cod !== 14) {
+                            throw new BlingException($body->msg);
+                        }
+
                         return $body->cod;
                     }
+
                 }
             }
         }
