@@ -14,8 +14,13 @@ class ProdutoResponse extends AbstractResourceResponse implements ResourceRespon
         $responseParsed = parent::parse($response, 'produtos', 'produto');
 
         if ($response->getStatusCode() === 201) {
-            $produto = current($responseParsed);
-            array_shift($responseParsed);
+            if (is_array($responseParsed)) {
+                $produto = current($responseParsed);
+                array_shift($responseParsed);
+            } else {
+                $produto = $responseParsed;
+            }
+            
             $produto->variacoes = $responseParsed;
 
             return $produto;
