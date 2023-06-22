@@ -92,12 +92,11 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
                 'descricaoVinculo' => sprintf("LJVT_PROD_%s", $response->id),
                 'idVinculoLoja' => sprintf("LJVT_PROD_%s", $response->id),
             ));
+
+            $response->produto_loja = $produtoLojaResponse;
         }
 
-        return [
-            'produto' => $response,
-            'produto_multiloja' => $produtoLojaResponse
-        ];
+        return $response;
     }
 
     /**
