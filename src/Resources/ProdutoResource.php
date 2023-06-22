@@ -82,10 +82,13 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
             )
         );
 
+        $id = !empty($response->codigo) ? $response->codigo : $response->id;
         if (!empty(Bling::$idLoja)) {
-            $produtoLoja = new ProdutoLojaResource();
+            $produtoLoja = new ProdutoLojaResource([$id]);
             $produtoLojaResponse = $produtoLoja->insert(array(
-                'idCategoria' => $response->id,
+                'preco' => [
+                    "preco" => $response->preco
+                ],
                 'descricaoVinculo' => sprintf("LJVT_PROD_%s", $response->id),
                 'idVinculoLoja' => sprintf("LJVT_PROD_%s", $response->id),
             ));
