@@ -7,7 +7,7 @@ use LojaVirtual\Bling\Exceptions\InvalidResourceException;
 final class Bling
 {
     private const BASE_URI = 'https://bling.com.br/Api/v2/';
-    private const TIMEOUT = 120;
+    private const TIMEOUT = 360;
     private const FORMAT = 'json';
 
     public static string $token;

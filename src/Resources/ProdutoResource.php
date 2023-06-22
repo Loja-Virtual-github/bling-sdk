@@ -94,7 +94,10 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
             ));
         }
 
-        return $response;
+        return [
+            'produto' => $response,
+            'produto_multiloja' => $produtoLojaResponse
+        ];
     }
 
     /**
