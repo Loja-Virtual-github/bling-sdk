@@ -92,6 +92,7 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
                 $preco['precoPromocional'] = $payload['preco_promocional'];
             }
             $produtoLojaResponse = $produtoLoja->insert(array(
+                'idLojaVirtual' => $payload['id_loja_produto'],
                 'preco' => $preco,
                 'descricaoVinculo' => sprintf("LJVT_PROD_%s", $response->id),
                 'idVinculoLoja' => sprintf("LJVT_PROD_%s", $response->id),
