@@ -3,6 +3,7 @@
     "description": "SDK não oficial de integração com o Bling",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "LojaVirtual\\Bling\\": "src/"
