@@ -19,7 +19,6 @@
             "email": "sanches.webmaster@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "require-dev": {
         "fakerphp/faker": "^1.20",
         "squizlabs/php_codesniffer": "^3.7",
