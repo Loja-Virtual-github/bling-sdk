@@ -101,11 +101,15 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
             ];
 
             if (array_key_exists('categorias_loja', $payload) && is_array($payload['categorias_loja'])) {
-                $payloadMultiloja['categoriasLoja']['categoriaLoja'] = $payload['categorias_loja'];
+                $payloadMultiloja['categoriasLoja']['categoriaLoja'] = array_map(
+                    function ($categoria) {
+                        return ['idCategoria' => $categoria];
+                    },
+                    $payload['categorias_loja']
+                );
             }
 
             $produtoLojaResponse = $produtoLoja->insert($payloadMultiloja);
-
             $response->produto_loja = $produtoLojaResponse;
         }
 
