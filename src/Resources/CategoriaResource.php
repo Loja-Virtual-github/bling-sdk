@@ -101,7 +101,7 @@ class CategoriaResource extends AbstractResource implements ResourceInterface
             $categoriaLoja->insert(array(
                 'idCategoria' => $response->id,
                 'descricaoVinculo' => $payload['descricao'],
-                'idVinculoLoja' => sprintf("LJVT_CAT_%s", $response->id),
+                'idVinculoLoja' => $payload['id_loja_categoria'],
             ));
         }
 
