@@ -93,12 +93,18 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
                 $preco['precoPromocional'] = $payload['preco_promocional'];
             }
 
-            $produtoLojaResponse = $produtoLoja->insert(array(
+            $payloadMultiloja = [
                 'idLojaVirtual' => $payload['id_loja_produto'],
                 'preco' => $preco,
                 'descricaoVinculo' => sprintf("LJVT_PROD_%s", $response->id),
-                'idVinculoLoja' => sprintf("LJVT_PROD_%s", $response->id),
-            ));
+                'idVinculoLoja' => sprintf("LJVT_PROD_%s", $response->id)
+            ];
+
+            if (array_key_exists('categorias_loja', $payload) && is_array($payload['categorias_loja'])) {
+                $payloadMultiloja['categoriasLoja']['categoriaLoja'] = $payload['categorias_loja'];
+            }
+
+            $produtoLojaResponse = $produtoLoja->insert($payloadMultiloja);
 
             $response->produto_loja = $produtoLojaResponse;
         }
