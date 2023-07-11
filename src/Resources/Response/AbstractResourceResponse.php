@@ -76,7 +76,11 @@ abstract class AbstractResourceResponse
 
         if (is_array($erros)) {
             $erros = array_map(function($erro){
-                return sprintf("#%s | %s", $erro->erro->cod, $erro->erro->msg);
+                if (is_object($erro)) {
+                    return sprintf("#%s | %s", $erro->erro->cod, $erro->erro->msg);
+                }
+
+                return $erro;
             }, $erros);
         } else {
             if (property_exists($erros, 'erro')) {
