@@ -21,7 +21,9 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
     {
         return $this->request(
             HttpMethods::GET,
-            $this->getEndpoint(AvailableRoutes::FETCH)
+            $this->getEndpoint(AvailableRoutes::FETCH),
+            null,
+            false
         );
     }
 
@@ -36,7 +38,9 @@ class CategoriaLojaResource extends AbstractResource implements ResourceInterfac
     {
         return $this->request(
             HttpMethods::GET,
-            $this->getEndpoint(AvailableRoutes::FETCH_ALL)
+            $this->getEndpoint(AvailableRoutes::FETCH_ALL),
+            null,
+            false
         );
     }
 

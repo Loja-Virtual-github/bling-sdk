@@ -33,7 +33,8 @@ class ContatoResource extends AbstractResource implements ResourceInterface
             $this->getEndpoint(AvailableRoutes::FETCH),
             array(
                 'identificador' => $this->getTipoIdentificador(current($options))
-            )
+            ),
+            false
         );
     }
 

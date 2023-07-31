@@ -25,7 +25,8 @@ class ProdutoLojaResource extends AbstractResource implements ResourceInterface
             $this->getEndpoint(AvailableRoutes::FETCH),
             array(
                 'loja' => Bling::$idLoja
-            )
+            ),
+            false
         );
     }
 

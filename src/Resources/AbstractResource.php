@@ -50,10 +50,11 @@ abstract class AbstractResource
         HttpMethods $method,
         string $endpoint,
         array $options = [],
-        ?int $page = 1
+        $pagination = false,
+        ?int $page = 1,
     ): mixed {
 
-        if ($method === HttpMethods::GET) {
+        if ($method === HttpMethods::GET && $pagination) {
             return $this->getPaginatedRequest(
                 $method,
                 $endpoint,

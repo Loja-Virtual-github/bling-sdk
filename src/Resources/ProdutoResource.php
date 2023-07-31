@@ -23,7 +23,9 @@ class ProdutoResource extends AbstractResource implements ResourceInterface
     {
         return $this->request(
             HttpMethods::GET,
-            $this->getEndpoint(AvailableRoutes::FETCH)
+            $this->getEndpoint(AvailableRoutes::FETCH),
+            null,
+            false
         );
     }
 
